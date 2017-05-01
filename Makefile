@@ -52,6 +52,7 @@ install:
 	mkdir -p $(DATADIR)/providers
 	cp providers/*.json $(DATADIR)/providers
 	cp providers/[!_]*.py $(DATADIR)/providers
+	cp providers/*.qml $(DATADIR)/providers
 	cp providers/README.md $(DATADIR)/providers
 	@echo "Installing translations..."
 	$(foreach lang,$(LANGS),$(call install-translations,$(lang)))
