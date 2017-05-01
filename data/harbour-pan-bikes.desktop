@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Pan Bikes
+Exec=sailfish-qml harbour-pan-bikes
+Icon=harbour-pan-bikes
+Type=Application
+X-Nemo-Application-Type=silica-qt5
