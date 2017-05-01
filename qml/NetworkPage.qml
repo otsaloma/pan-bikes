@@ -37,7 +37,7 @@ Dialog {
             ListItemLabel {
                 id: cityLabel
                 anchors.leftMargin: view.searchField.textLeftMargin
-                color: (model.active || listItem.highlighted) ?
+                color: listItem.highlighted ?
                     Theme.highlightColor : Theme.primaryColor
                 height: implicitHeight + Theme.paddingMedium
                 text: "%1, %2".arg(model.city_qml).arg(model.country)
