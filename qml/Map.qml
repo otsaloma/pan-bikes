@@ -152,6 +152,14 @@ Map {
         return [nw.longitude, se.longitude, se.latitude, nw.latitude];
     }
 
+    function setCenter(x, y) {
+        // Set the current center position.
+        // Create a new object to trigger animation.
+        if (!x || !y) return;
+        map.center = QtPositioning.coordinate(y, x);
+        map.changed = true;
+    }
+
     function setZoomLevel(zoom) {
         // Set the current zoom level.
         map.zoomLevel = zoom;

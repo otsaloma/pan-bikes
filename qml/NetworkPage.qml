@@ -101,6 +101,7 @@ Dialog {
         py.call_sync("pan.app.set_provider", [page.network.provider_id]);
         app.conf.set("network", page.network.id);
         app.conf.set("network_label", page.network.city);
+        map.setCenter(page.network.x, page.network.y);
         map.clearStations();
         map.updateStations();
     }
