@@ -23,6 +23,7 @@ import "."
 Dialog {
     id: page
     allowedOrientations: app.defaultAllowedOrientations
+    canAccept: false
     property bool loading: false
     property var network: null
     property var networks: []
@@ -64,17 +65,19 @@ Dialog {
                 verticalAlignment: Text.AlignTop
             }
             onClicked: {
+                page.canAccept = true;
                 page.network = model;
                 page.accept();
             }
         }
         header: Column {
-            height: header.height + searchField.height
+            height: header.height + (searchField.visible ? searchField.height : 0)
             width: parent.width
             DialogHeader { id: header }
             SearchField {
                 id: searchField
                 placeholderText: qsTranslate("", "Search")
+                visible: !page.loading
                 width: parent.width
                 onTextChanged: page.filterNetworks();
             }
