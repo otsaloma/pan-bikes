@@ -52,6 +52,8 @@ class Provider:
         self._path = path
         self._provider = None
         self._stations = {}
+        self.stations_returned = 0
+        self.stations_total = 0
         self._stations_utime = -1
         self._init_provider(id, re.sub(r"\.json$", ".py", path))
 
@@ -84,6 +86,8 @@ class Provider:
         stations = copy.deepcopy(self._stations[network])
         inbb = lambda x: xmin < x["x"] < xmax and ymin < x["y"] < ymax
         stations = list(filter(inbb, stations))
+        self.stations_total = len(stations)
+        self.stations_returned = min(50, len(stations))
         return sorted(stations, key=lambda x: x["key"])[:50]
 
     def _init_provider(self, id, path):

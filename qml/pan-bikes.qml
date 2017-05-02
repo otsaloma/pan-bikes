@@ -34,6 +34,7 @@ ApplicationWindow {
     property bool running: applicationActive || cover.active
     PositionSource { id: gps }
     Python { id: py }
+    StatusMessage { id: statusMessage }
     Component.onDestruction: {
         py.ready && py.call_sync("pan.app.quit", []);
     }

@@ -70,7 +70,6 @@ Map {
         interval: 500
         repeat: true
         running: py.ready && map.ready && app.running
-        triggeredOnStart: true
         onTriggered: (map.changed || Date.now() - map.utime > 60000) &&
             map.updateStations();
     }
@@ -203,6 +202,8 @@ Map {
             results = results.filter(left);
             for (var i = 0; i < results.length; i++)
                 map.addStation(results[i]);
+            // Inform user if not all stations are visible.
+            statusMessage.update();
         });
         map.changed = false;
         map.utime = Date.now();
