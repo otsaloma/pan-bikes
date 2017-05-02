@@ -18,6 +18,7 @@
 """A proxy for information from providers."""
 
 import copy
+import hashlib
 import importlib.machinery
 import os
 import pan
@@ -69,15 +70,21 @@ class Provider:
         return pan.util.sorted_by_distance(networks, x, y)
 
     @pan.util.api_query([])
-    def list_stations(self, network):
+    def list_stations(self, network, xmin=-180, xmax=180, ymin=-90, ymax=90):
         """Return a list of bike stations for `network`."""
-        if (network in self._stations and
-            self._stations[network] and
-            time.time() - self._stations_utime < 60):
-            return copy.deepcopy(self._stations[network])
-        self._stations[network] = self._provider.list_stations(network)
-        self._stations_utime = time.time()
-        return copy.deepcopy(self._stations[network])
+        if (not network in self._stations or
+            not self._stations[network] or
+            time.time() - self._stations_utime > 60):
+            stations = self._provider.list_stations(network)
+            for station in stations:
+                id = bytes(station["id"], "utf_8")
+                station["key"] = hashlib.md5(id).hexdigest()
+            self._stations[network] = stations
+            self._stations_utime = time.time()
+        stations = copy.deepcopy(self._stations[network])
+        inbb = lambda x: xmin < x["x"] < xmax and ymin < x["y"] < ymax
+        stations = list(filter(inbb, stations))
+        return sorted(stations, key=lambda x: x["key"])[:50]
 
     def _init_provider(self, id, path):
         """Initialize transit provider module from `path`."""

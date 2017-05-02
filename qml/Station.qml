@@ -90,5 +90,6 @@ MapQuickItem {
     }
     property int bikes: 0
     property int capacity: 0
+    property bool found: false
     property string uid: ""
 }

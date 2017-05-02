@@ -46,9 +46,10 @@ class Application:
         networks = copy.deepcopy(networks)
         return pan.util.sorted_by_distance(networks, x, y)
 
-    def list_stations(self):
+    def list_stations(self, xmin=-180, xmax=180, ymin=-90, ymax=90):
         """Return a list of bike stations from the current network."""
-        return self.provider.list_stations(pan.conf.network)
+        return self.provider.list_stations(
+            pan.conf.network, xmin, xmax, ymin, ymax)
 
     def quit(self):
         """Quit the application."""

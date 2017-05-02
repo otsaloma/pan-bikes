@@ -30,8 +30,9 @@ Map {
     minimumZoomLevel: 3
     plugin: MapPlugin {}
 
+    property bool changed: true
     property bool ready: false
-    property bool showMenuButton: true
+    property bool showOverlays: true
     property var  stations: []
     property var  utime: -1
     property real zoomLevelPrev: 8
@@ -66,11 +67,12 @@ Map {
 
     Timer {
         id: updateTimer
-        interval: 5000
+        interval: 500
         repeat: true
         running: py.ready && map.ready && app.running
         triggeredOnStart: true
-        onTriggered: map.updateStationsMaybe();
+        onTriggered: (map.changed || Date.now() - map.utime > 60000) &&
+            map.updateStations();
     }
 
     MouseArea {
@@ -95,6 +97,12 @@ Map {
         map.ready = true;
     }
 
+    onCenterChanged: {
+        // Ensure that stations are updated after panning.
+        // This gets fired ridiculously often, so keep simple.
+        map.changed = true;
+    }
+
     gesture.onPinchFinished: {
         // Round piched zoom level to avoid fuzziness.
         if (map.zoomLevel < map.zoomLevelPrev) {
@@ -111,13 +119,13 @@ Map {
     function addStation(props) {
         // Add a new station marker to the map.
         var component = Qt.createComponent("Station.qml");
-        var item = component.createObject(map);
-        item.uid = props.id;
-        item.coordinate = QtPositioning.coordinate(props.y, props.x);
-        item.bikes = props.free_bikes;
-        item.capacity = props.free_bikes + props.empty_slots;
-        map.stations.push(item);
-        map.addMapItem(item);
+        var station = component.createObject(map);
+        station.uid = props.id;
+        station.coordinate = QtPositioning.coordinate(props.y, props.x);
+        station.bikes = props.free_bikes;
+        station.capacity = props.free_bikes + props.empty_slots;
+        map.stations.push(station);
+        map.addMapItem(station);
     }
 
     function centerOnPosition() {
@@ -137,39 +145,67 @@ Map {
         map.stations = [];
     }
 
+    function getBoundingBox() {
+        // Return the currently visible [xmin, xmax, ymin, ymax].
+        var nw = map.toCoordinate(Qt.point(0, 0));
+        var se = map.toCoordinate(Qt.point(map.width, map.height));
+        return [nw.longitude, se.longitude, se.latitude, nw.latitude];
+    }
+
     function setZoomLevel(zoom) {
         // Set the current zoom level.
         map.zoomLevel = zoom;
         map.zoomLevelPrev = zoom;
     }
 
-    function updateStation(props) {
-        // Update station marker or add if missing.
+    function updateStationMatching(props) {
+        // Update matching station marker if found.
         for (var i = 0; i < map.stations.length; i++) {
             if (map.stations[i].uid !== props.id) continue;
             var coord = QtPositioning.coordinate(props.y, props.x);
             map.stations[i].coordinate = coord;
             map.stations[i].bikes = props.free_bikes;
             map.stations[i].capacity = props.free_bikes + props.empty_slots;
+            props.found = true;
+            map.stations[i].found = true;
             return;
         }
-        map.addStation(props);
+    }
+
+    function updateStationReuse(props) {
+        // Update station reusing any existing free marker.
+        for (var i = 0; i < map.stations.length; i++) {
+            if (map.stations[i].found) continue;
+            var coord = QtPositioning.coordinate(props.y, props.x);
+            map.stations[i].uid = props.id;
+            map.stations[i].coordinate = coord;
+            map.stations[i].bikes = props.free_bikes;
+            map.stations[i].capacity = props.free_bikes + props.empty_slots;
+            props.found = true;
+            map.stations[i].found = true;
+            return;
+        }
     }
 
     function updateStations() {
         // Fetch data from Python backend and update station markers.
         if (!py.ready) return;
-        py.call("pan.app.list_stations", [], function(results) {
-            map.utime = Date.now();
+        var args = map.getBoundingBox();
+        py.call("pan.app.list_stations", args, function(results) {
+            var left = function(x) { return !x.found; };
+            for (var i = 0; i < map.stations.length; i++)
+                map.stations[i].found = false;
             for (var i = 0; i < results.length; i++)
-                updateStation(results[i]);
+                map.updateStationMatching(results[i]);
+            results = results.filter(left);
+            for (var i = 0; i < results.length; i++)
+                map.updateStationReuse(results[i]);
+            results = results.filter(left);
+            for (var i = 0; i < results.length; i++)
+                map.addStation(results[i]);
         });
-    }
-
-    function updateStationsMaybe() {
-        // Update stations markers if not updated in a while.
-        if (Date.now() - map.utime > 60000)
-            map.updateStations();
+        map.changed = false;
+        map.utime = Date.now();
     }
 
 }

@@ -26,7 +26,7 @@ IconButton {
     anchors.horizontalCenter: parent.horizontalCenter
     icon.smooth: false
     icon.source: app.getIcon("menu")
-    visible: py.ready && parent.showMenuButton
+    visible: py.ready && parent.showOverlays
     z: 600
     onClicked: app.pageStack.push("MenuPage.qml");
 }

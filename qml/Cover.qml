@@ -26,7 +26,7 @@ Cover {
     property bool active: status === Cover.Active
     Map {
         id: coverMap
-        showMenuButton: false
+        showOverlays: false
     }
     onStatusChanged: {
         if (cover.status === Cover.Activating) {
