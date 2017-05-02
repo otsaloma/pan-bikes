@@ -24,6 +24,7 @@ import os
 import pan
 import random
 import re
+import statistics
 import time
 
 __all__ = ("Provider",)
@@ -57,11 +58,26 @@ class Provider:
         self._stations_utime = -1
         self._init_provider(id, re.sub(r"\.json$", ".py", path))
 
+    def get_center(self, network):
+        """Return coordinates of `network`'s center point."""
+        if (not network in self._stations or
+            not self._stations[network]):
+            return dict(x=None, y=None)
+        x = [s["x"] for s in self._stations[network]]
+        y = [s["y"] for s in self._stations[network]]
+        return dict(x=statistics.mean(x), y=statistics.mean(y))
+
     @property
     def info_qml_uri(self):
         """Return URI to provider info QML file."""
         path = re.sub(r"\.json$", "_info.qml", self._path)
         return pan.util.path2uri(path)
+
+    def _init_provider(self, id, path):
+        """Initialize transit provider module from `path`."""
+        name = "pan.provider{:d}".format(random.randrange(10**12))
+        loader = importlib.machinery.SourceFileLoader(name, path)
+        self._provider = loader.load_module(name)
 
     @pan.util.api_query([])
     def list_networks(self, x=0, y=0):
@@ -89,12 +105,6 @@ class Provider:
         self.stations_total = len(stations)
         self.stations_returned = min(50, len(stations))
         return sorted(stations, key=lambda x: x["key"])[:50]
-
-    def _init_provider(self, id, path):
-        """Initialize transit provider module from `path`."""
-        name = "pan.provider{:d}".format(random.randrange(10**12))
-        loader = importlib.machinery.SourceFileLoader(name, path)
-        self._provider = loader.load_module(name)
 
     def _load_attributes(self, id):
         """Read and return attributes from JSON file."""

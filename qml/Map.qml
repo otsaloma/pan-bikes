@@ -25,11 +25,12 @@ import "."
 Map {
     id: map
     anchors.fill: parent
-    center: QtPositioning.coordinate(60.169, 24.941)
+    center: QtPositioning.coordinate(49, 13)
     gesture.enabled: true
     minimumZoomLevel: 3
     plugin: MapPlugin {}
 
+    property bool centerFound: false
     property bool changed: true
     property bool ready: false
     property bool showOverlays: true
@@ -134,6 +135,7 @@ Map {
             gps.position.coordinate.latitude,
             gps.position.coordinate.longitude);
 
+        map.centerFound = true;
     }
 
     function clearStations() {
@@ -216,6 +218,14 @@ Map {
             // Inform user if not all stations are visible.
             statusMessage.update();
             map.updating = false;
+            if (!map.centerFound) {
+                // If no positioning data has yet been received, we can
+                // fall back to centering on the network, which is possible
+                // after a list_stations call has been made.
+                py.call("pan.app.get_center", [], function(coord) {
+                    coord.x && coord.y && map.setCenter(coord.x, coord.y);
+                });
+            }
         });
         map.changed = false;
         map.utime = Date.now();

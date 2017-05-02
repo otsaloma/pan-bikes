@@ -23,7 +23,7 @@ PositionSource {
     id: gps
     active: app.running
     property var coordPrev: QtPositioning.coordinate(0, 0)
-    property var initialCenter: QtPositioning.coordinate(60.169, 24.941)
+    property var initialCenter: QtPositioning.coordinate(49, 13)
     property var initTime: Date.now()
     onPositionChanged: {
         // Do initial centering on big hops before positioning stabilises.

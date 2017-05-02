@@ -33,6 +33,10 @@ class Application:
         self.provider = None
         self.set_provider(pan.conf.provider)
 
+    def get_center(self):
+        """Return coordinates of the current network's center point."""
+        return self.provider.get_center(pan.conf.network)
+
     def list_networks(self, x, y):
         """Return a list of bike networks from all providers."""
         networks = []
