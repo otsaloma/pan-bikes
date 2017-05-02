@@ -34,6 +34,7 @@ Map {
     property bool ready: false
     property bool showOverlays: true
     property var  stations: []
+    property var  updating: false
     property var  utime: -1
     property real zoomLevelPrev: 8
 
@@ -189,6 +190,8 @@ Map {
     function updateStations() {
         // Fetch data from Python backend and update station markers.
         if (!py.ready) return;
+        if (map.updating) return;
+        map.updating = true;
         var args = map.getBoundingBox();
         py.call("pan.app.list_stations", args, function(results) {
             var left = function(x) { return !x.found; };
@@ -204,6 +207,7 @@ Map {
                 map.addStation(results[i]);
             // Inform user if not all stations are visible.
             statusMessage.update();
+            map.updating = false;
         });
         map.changed = false;
         map.utime = Date.now();
