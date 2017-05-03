@@ -25,6 +25,7 @@ import sys
 __all__ = ("ConfigurationStore",)
 
 DEFAULTS = {
+    "max_stations": 50,
     "network": "hsl",
     "network_label": "Helsinki",
     "provider": "hsl",

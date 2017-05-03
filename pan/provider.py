@@ -30,6 +30,23 @@ import time
 __all__ = ("Provider",)
 
 
+class BoundingBox:
+
+    """Coordinates of a rectangular area of a map."""
+
+    def __init__(self, xmin, xmax, ymin, ymax, buffer=0):
+        """Initialize a :class:`BoundingBox` instance."""
+        self.xmin = xmin - buffer * (xmax - xmin)
+        self.xmax = xmax + buffer * (xmax - xmin)
+        self.ymin = ymin - buffer * (ymax - ymin)
+        self.ymax = ymax + buffer * (ymax - ymin)
+
+    def contains(self, point):
+        """Return ``True`` if `point` is inside bounding box."""
+        return (self.xmin < point["x"] < self.xmax and
+                self.ymin < point["y"] < self.ymax)
+
+
 class Provider:
 
     """A proxy for information from providers."""
@@ -60,12 +77,19 @@ class Provider:
 
     def get_center(self, network):
         """Return coordinates of `network`'s center point."""
-        if (not network in self._stations or
-            not self._stations[network]):
+        stations = self._stations.setdefault(network, [])
+        if not stations:
             return dict(x=None, y=None)
-        x = [s["x"] for s in self._stations[network]]
-        y = [s["y"] for s in self._stations[network]]
+        x = [s["x"] for s in stations]
+        y = [s["y"] for s in stations]
         return dict(x=statistics.mean(x), y=statistics.mean(y))
+
+    def get_total_stations(self, network, bbox=None):
+        """Return the total amount of bike stations for `network`."""
+        stations = self._stations.setdefault(network, [])
+        bbox = bbox or [-180, 180, -90, 90]
+        bbox = BoundingBox(*bbox)
+        return sum(map(bbox.contains, stations))
 
     @property
     def info_qml_uri(self):
@@ -83,15 +107,19 @@ class Provider:
     def list_networks(self, x=0, y=0):
         """Return a list of bike networks."""
         if not self._networks:
-            self._networks = self._provider.list_networks()
+            networks = self._provider.list_networks()
+            for network in networks:
+                network["provider_id"] = self.id
+                network["provider_name"] = self.name
+            self._networks = networks
         networks = copy.deepcopy(self._networks)
         return pan.util.sorted_by_distance(networks, x, y)
 
     @pan.util.api_query([])
-    def list_stations(self, network, xmin=-180, xmax=180, ymin=-90, ymax=90):
+    def list_stations(self, network, bbox=None):
         """Return a list of bike stations for `network`."""
-        if (not network in self._stations or
-            not self._stations[network] or
+        bbox = bbox or [-180, 180, -90, 90]
+        if (not self._stations.setdefault(network, []) or
             time.time() - self._stations_utime > 60):
             stations = self._provider.list_stations(network)
             for station in stations:
@@ -100,11 +128,12 @@ class Provider:
             self._stations[network] = stations
             self._stations_utime = time.time()
         stations = copy.deepcopy(self._stations[network])
-        inbb = lambda x: xmin < x["x"] < xmax and ymin < x["y"] < ymax
-        stations = list(filter(inbb, stations))
-        self.stations_total = len(stations)
-        self.stations_returned = min(50, len(stations))
-        return sorted(stations, key=lambda x: x["key"])[:50]
+        for buffer in [0.2, 0.1, 0]:
+            buffered = BoundingBox(*(bbox + [buffer]))
+            stations = list(filter(buffered.contains, stations))
+            if len(stations) <= pan.conf.max_stations: break
+        stations.sort(key=lambda x: x["key"])
+        return stations[:pan.conf.max_stations]
 
     def _load_attributes(self, id):
         """Read and return attributes from JSON file."""

@@ -20,7 +20,34 @@ import pan.test
 
 class TestProvider(pan.test.TestCase):
 
+    def setup_method(self, method):
+        self.provider = pan.Provider("citybikes")
+        self.network = "citybikes-helsinki"
+        self.bbox = [24.84592, 24.89656, 60.14359, 60.17110]
+
     def test___new____yes(self):
         a = pan.Provider("citybikes")
         b = pan.Provider("citybikes")
         assert a is b
+
+    def test_get_center(self):
+        self.provider.list_stations(self.network)
+        center = self.provider.get_center(self.network)
+        assert 24 < center["x"] < 25
+        assert 60 < center["y"] < 61
+
+    def test_get_total_stations(self):
+        self.provider.list_stations(self.network)
+        get_total = self.provider.get_total_stations
+        assert 100 < get_total(self.network) < 200
+        assert 6 < get_total(self.network, self.bbox) < 12
+
+    def test_list_networks(self):
+        networks = self.provider.list_networks(x=24.941, y=60.169)
+        assert networks[0]["id"] == self.network
+
+    def test_list_stations(self):
+        stations = self.provider.list_stations(self.network)
+        assert len(stations) == pan.conf.max_stations
+        stations = self.provider.list_stations(self.network, self.bbox)
+        assert 6 < len(stations) < 12

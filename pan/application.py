@@ -37,23 +37,23 @@ class Application:
         """Return coordinates of the current network's center point."""
         return self.provider.get_center(pan.conf.network)
 
+    def get_total_stations(self, bbox=None):
+        """Return the total amount of bike stations for the current network."""
+        return self.provider.get_total_stations(pan.conf.network, bbox)
+
     def list_networks(self, x, y):
         """Return a list of bike networks from all providers."""
         networks = []
         for provider in pan.util.get_providers():
             with pan.util.silent(Exception, tb=True):
                 provider = pan.Provider(provider["pid"])
-                for network in provider.list_networks(x, y):
-                    network["provider_id"] = provider.id
-                    network["provider_name"] = provider.name
-                    networks.append(network)
+                networks.extend(provider.list_networks())
         networks = copy.deepcopy(networks)
         return pan.util.sorted_by_distance(networks, x, y)
 
-    def list_stations(self, xmin=-180, xmax=180, ymin=-90, ymax=90):
-        """Return a list of bike stations from the current network."""
-        return self.provider.list_stations(
-            pan.conf.network, xmin, xmax, ymin, ymax)
+    def list_stations(self, bbox):
+        """Return a list of bike stations for the current network."""
+        return self.provider.list_stations(pan.conf.network, bbox)
 
     def quit(self):
         """Quit the application."""
