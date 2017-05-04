@@ -21,15 +21,14 @@ import Sailfish.Silica 1.0
 import "../qml"
 
 Column {
+
     ListItemLabel {
         font.pixelSize: Theme.fontSizeSmall
         height: implicitHeight + Theme.paddingLarge
-        horizontalAlignment: implicitWidth > parent.width -
-            anchors.leftMargin - anchors.rightMargin ?
-            Text.AlignLeft : Text.AlignHCenter
         text: qsTranslate("", "Data is provided via the citybik.es API. If your local city bike system is not supported, or you see an error in the data, you can contribute to the pybikes backend of that API by filing an issue and/or contributing code.")
         wrapMode: Text.WordWrap
     }
+
     Button {
         anchors.horizontalCenter: parent.horizontalCenter
         height: Theme.itemSizeLarge
@@ -37,4 +36,5 @@ Column {
         text: "github.com/eskerda/pybikes"
         onClicked: Qt.openUrlExternally("https://github.com/eskerda/pybikes");
     }
+
 }

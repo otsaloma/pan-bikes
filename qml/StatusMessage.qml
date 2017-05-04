@@ -21,35 +21,40 @@ import Sailfish.Silica 1.0
 
 Item {
     anchors.bottom: parent.bottom
-    anchors.bottomMargin: Theme.paddingSmall + Math.round(Theme.pixelRatio * 12)
+    anchors.margins: Math.round(Theme.pixelRatio * 16)
     anchors.right: parent.right
-    anchors.rightMargin: Theme.paddingSmall + Math.round(Theme.pixelRatio * 12)
     height: box.height
-    opacity: 0.9
     width: box.width
-    z: 100
+    z: 500
+
     Rectangle {
         id: box
-        anchors.bottom: parent.bottom
-        anchors.right: parent.right
-        color: "white"
-        height: message.implicitHeight + 2 * Theme.paddingMedium
-        opacity: 0.7
+        anchors.fill: message
+        anchors.margins: -Theme.paddingMedium
+        color: "yellow"
+        opacity: 0.85
         visible: message.text
-        width: message.implicitWidth + 2 * Theme.paddingMedium
     }
+
     Text {
         id: message
-        anchors.centerIn: box
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: Theme.paddingMedium
+        anchors.right: parent.right
+        anchors.rightMargin: Theme.paddingMedium
         color: "black"
         font.bold: true
         font.family: "sans-serif"
-        font.pixelSize: Math.round(Theme.pixelRatio * 20)
+        font.pixelSize: Math.round(Theme.pixelRatio * 22)
+        opacity: 0.95
     }
-    function update() {
-        if (!py.ready) return;
-        var returned = py.evaluate("pan.app.provider.stations_returned");
-        var total = py.evaluate("pan.app.provider.stations_total");
-        message.text = returned === total ? "" : "%1/%2".arg(returned).arg(total);
+
+    function update(bbox) {
+        // Update the amount of visible and total stations.
+        py.call("pan.app.get_total_stations", [bbox], function(total) {
+            var limit = app.conf.get("max_stations");
+            message.text = total > limit ? "%1/%2".arg(limit).arg(total) : "";
+        });
     }
+
 }

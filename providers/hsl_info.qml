@@ -21,15 +21,14 @@ import Sailfish.Silica 1.0
 import "../qml"
 
 Column {
+
     ListItemLabel {
         font.pixelSize: Theme.fontSizeSmall
         height: implicitHeight + Theme.paddingLarge
-        horizontalAlignment: implicitWidth > parent.width -
-            anchors.leftMargin - anchors.rightMargin ?
-            Text.AlignLeft : Text.AlignHCenter
         text: qsTranslate("", "You need to register to use city bikes. See HSL web pages for more information.")
         wrapMode: Text.WordWrap
     }
+
     Button {
         anchors.horizontalCenter: parent.horizontalCenter
         height: Theme.itemSizeLarge
@@ -37,4 +36,5 @@ Column {
         text: "hsl.fi/kaupunkipyorat"
         onClicked: Qt.openUrlExternally("https://www.hsl.fi/kaupunkipyorat");
     }
+
 }

@@ -20,30 +20,32 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import "."
 
-Dialog {
+Page {
     id: page
     allowedOrientations: app.defaultAllowedOrientations
-    canAccept: false
+
     property bool loading: false
-    property var network: null
     property var networks: []
+
     SilicaListView {
         id: view
         anchors.fill: parent
         // Prevent list items from stealing focus.
         currentIndex: -1
+
         delegate: ListItem {
             id: listItem
             contentHeight: cityLabel.height + nameLabel.height + sourceLabel.height
+
             ListItemLabel {
                 id: cityLabel
                 anchors.leftMargin: view.searchField.textLeftMargin
-                color: listItem.highlighted ?
-                    Theme.highlightColor : Theme.primaryColor
+                color: listItem.highlighted ? Theme.highlightColor : Theme.primaryColor
                 height: implicitHeight + Theme.paddingMedium
                 text: "%1, %2".arg(model.city_qml).arg(model.country)
                 verticalAlignment: Text.AlignBottom
             }
+
             ListItemLabel {
                 id: nameLabel
                 anchors.leftMargin: view.searchField.textLeftMargin
@@ -54,6 +56,7 @@ Dialog {
                 text: model.name
                 verticalAlignment: Text.AlignVCenter
             }
+
             ListItemLabel {
                 id: sourceLabel
                 anchors.leftMargin: view.searchField.textLeftMargin
@@ -64,16 +67,28 @@ Dialog {
                 text: qsTranslate("", "via %1").arg(model.provider_name)
                 verticalAlignment: Text.AlignTop
             }
+
             onClicked: {
-                page.canAccept = true;
-                page.network = model;
-                page.accept();
+                py.call_sync("pan.app.set_provider", [model.provider_id]);
+                app.conf.set("network", model.id);
+                app.conf.set("network_label", model.city);
+                map.clearStations();
+                map.setCenter(model.x, model.y);
+                map.changed = true;
+                app.pageStack.pop(app.initialPage);
             }
+
         }
+
         header: Column {
-            height: header.height + (searchField.visible ? searchField.height : 0)
+            height: header.height + searchField.visible * searchField.height
             width: parent.width
-            DialogHeader { id: header }
+
+            PageHeader {
+                id: header
+                title: qsTranslate("", "Networks")
+            }
+
             SearchField {
                 id: searchField
                 placeholderText: qsTranslate("", "Search")
@@ -81,16 +96,24 @@ Dialog {
                 width: parent.width
                 onTextChanged: page.filterNetworks();
             }
+
             Component.onCompleted: view.searchField = searchField;
+
         }
+
         model: ListModel {}
-        property var searchField
+
+        property var searchField: null
+
         VerticalScrollDecorator {}
+
     }
+
     BusyModal {
         id: busy
         running: page.loading
     }
+
     onStatusChanged: {
         if (page.status === PageStatus.Activating) {
             view.model.clear();
@@ -100,14 +123,7 @@ Dialog {
             page.loadNetworks();
         }
     }
-    onAccepted: {
-        py.call_sync("pan.app.set_provider", [page.network.provider_id]);
-        app.conf.set("network", page.network.id);
-        app.conf.set("network_label", page.network.city);
-        map.setCenter(page.network.x, page.network.y);
-        map.clearStations();
-        map.updateStations();
-    }
+
     function filterNetworks() {
         // Filter view to show networks matching search query.
         view.model.clear();
@@ -124,16 +140,18 @@ Dialog {
             view.model.append(page.networks[i]);
         }
     }
+
     function filterNetworksClosest() {
         // Filter view to show the closest networks.
-        for (var i = 0; i < Math.min(page.networks.length, 100); i++)
+        for (var i = 0; i < page.networks.length; i++)
             view.model.append(page.networks[i]);
     }
+
     function loadNetworks() {
         // Load provider model entries from the Python backend.
         view.model.clear();
-        var x = gps.position.coordinate.longitude || 0;
-        var y = gps.position.coordinate.latitude || 0;
+        var x = gps.position.coordinate.longitude || map.center.longitude;
+        var y = gps.position.coordinate.latitude || map.center.latitude;
         py.call("pan.app.list_networks", [x, y], function(results) {
             if (results && results.error && results.message) {
                 busy.error = results.message;
@@ -148,4 +166,5 @@ Dialog {
             }
         });
     }
+
 }

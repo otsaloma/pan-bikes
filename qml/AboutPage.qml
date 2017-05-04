@@ -23,18 +23,25 @@ import "."
 Page {
     id: page
     allowedOrientations: app.defaultAllowedOrientations
+
     SilicaFlickable {
         anchors.fill: parent
         contentHeight: column.height
+
         Column {
             id: column
             width: parent.width
-            PageHeader { title: qsTranslate("", "About %1").arg("Pan Bikes") }
+
+            PageHeader {
+                title: qsTranslate("", "About Pan Bikes")
+            }
+
             ListItemLabel {
                 height: Theme.itemSizeExtraSmall
                 horizontalAlignment: Text.AlignHCenter
                 text: qsTranslate("", "version %1").arg(py.evaluate("pan.__version__"))
             }
+
             Button {
                 anchors.horizontalCenter: parent.horizontalCenter
                 height: Theme.itemSizeLarge
@@ -42,12 +49,14 @@ Page {
                 text: "GitHub page"
                 onClicked: Qt.openUrlExternally("https://github.com/otsaloma/pan-bikes");
             }
+
             ListItemLabel {
                 font.pixelSize: Theme.fontSizeSmall
                 height: Theme.itemSizeExtraSmall
                 horizontalAlignment: Text.AlignHCenter
                 text: "Copyright © 2016–2017 Osmo Salomaa"
             }
+
             ListItemLabel {
                 font.pixelSize: Theme.fontSizeSmall
                 height: implicitHeight + Theme.paddingLarge
@@ -57,7 +66,11 @@ Page {
                 text: qsTranslate("", "Pan Bikes is free software released under the GNU General Public License (GPL), version 3 or later.")
                 wrapMode: Text.WordWrap
             }
-            SectionHeader { text: qsTranslate("", "Translated by") }
+
+            SectionHeader {
+                text: qsTranslate("", "Translated by")
+            }
+
             ListItemLabel {
                 font.pixelSize: Theme.fontSizeSmall
                 height: visible ? Theme.itemSizeExtraSmall : 0
@@ -71,6 +84,7 @@ Page {
                 text: qsTranslate("", "translator-credits")
                 visible: text && text !== "translator-credits"
             }
+
             ListItemLabel {
                 font.pixelSize: Theme.fontSizeSmall
                 height: implicitHeight + Theme.paddingLarge
@@ -80,6 +94,7 @@ Page {
                 text: qsTranslate("", "You can add new user interface translations or contribute to existing ones at Transifex.")
                 wrapMode: Text.WordWrap
             }
+
             Button {
                 anchors.horizontalCenter: parent.horizontalCenter
                 height: Theme.itemSizeLarge
@@ -87,7 +102,10 @@ Page {
                 text: "Transifex page"
                 onClicked: Qt.openUrlExternally("https://www.transifex.com/otsaloma/pan-bikes/");
             }
+
         }
+
         VerticalScrollDecorator {}
+
     }
 }

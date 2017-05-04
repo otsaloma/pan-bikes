@@ -22,9 +22,11 @@ import QtPositioning 5.3
 PositionSource {
     id: gps
     active: app.running
+
     property var coordPrev: QtPositioning.coordinate(0, 0)
-    property var initialCenter: QtPositioning.coordinate(49, 13)
+    property var initialCenter: QtPositioning.coordinate(48.137, 11.575)
     property var initTime: Date.now()
+
     onPositionChanged: {
         // Do initial centering on big hops before positioning stabilises.
         var coord = gps.position.coordinate;
@@ -36,4 +38,5 @@ PositionSource {
         gps.coordPrev.longitude = coord.longitude;
         gps.coordPrev.latitude = coord.latitude;
     }
+
 }

@@ -30,14 +30,17 @@ ApplicationWindow {
         allowedOrientations: app.defaultAllowedOrientations
         Map { id: map }
     }
+
     property var conf: Config {}
-    property bool running: applicationActive || cover.active
+    property bool running: Qt.application.active || cover.active
+
     PositionSource { id: gps }
     Python { id: py }
-    StatusMessage { id: statusMessage }
+
     Component.onDestruction: {
         py.ready && py.call_sync("pan.app.quit", []);
     }
+
     function getIcon(name) {
         // Return path to icon suitable for user's screen,
         // finding the closest match to Theme.pixelRatio.
@@ -51,4 +54,5 @@ ApplicationWindow {
         var ratio = ratios[minIndex].toFixed(2);
         return "icons/%1@%2.png".arg(name).arg(ratio);
     }
+
 }

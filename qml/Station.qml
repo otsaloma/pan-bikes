@@ -25,6 +25,7 @@ MapQuickItem {
     anchorPoint.x: bubble.width / 2
     anchorPoint.y: arrow.y
     sourceItem: Item {
+
         Rectangle {
             id: bubble
             anchors.bottom: bar.bottom
@@ -34,6 +35,17 @@ MapQuickItem {
             anchors.top: separator.top
             color: "#d0000000"
         }
+
+        Image {
+            id: arrow
+            anchors.horizontalCenter: bubble.horizontalCenter
+            anchors.top: bubble.bottom
+            // Try to avoid a stripe between bubble and arrow.
+            anchors.topMargin: Theme.pixelRatio * -0.5
+            smooth: false
+            source: app.getIcon("bubble-arrow")
+        }
+
         Text {
             id: separator
             color: "white"
@@ -42,6 +54,7 @@ MapQuickItem {
             font.pixelSize: Math.round(Theme.pixelRatio * 18)
             text: "/"
         }
+
         Text {
             id: bikesText
             anchors.baseline: separator.baseline
@@ -54,6 +67,7 @@ MapQuickItem {
             horizontalAlignment: Text.AlignRight
             text: station.bikes
         }
+
         Text {
             id: capacityText
             anchors.baseline: separator.baseline
@@ -66,6 +80,7 @@ MapQuickItem {
             horizontalAlignment: Text.AlignLeft
             text: station.capacity
         }
+
         Rectangle {
             id: bar
             anchors.left: bubble.left
@@ -74,22 +89,17 @@ MapQuickItem {
             anchors.topMargin: Theme.paddingSmall
             color: Theme.highlightColor
             height: Theme.paddingSmall
-            width: Math.floor(station.bikes/station.capacity *
-                              (bubble.width - anchors.leftMargin - anchors.rightMargin));
+            width: {
+                var total = bubble.width - 2 * anchors.leftMargin;
+                return Math.floor(station.bikes/station.capacity * total);
+            }
+        }
 
-        }
-        Image {
-            id: arrow
-            anchors.horizontalCenter: bubble.horizontalCenter
-            anchors.top: bubble.bottom
-            // Try to avoid a stripe between bubble and arrow.
-            anchors.topMargin: Theme.pixelRatio * -0.5
-            smooth: false
-            source: app.getIcon("bubble-arrow")
-        }
     }
+
     property int bikes: 0
     property int capacity: 0
     property bool found: false
     property string uid: ""
+
 }

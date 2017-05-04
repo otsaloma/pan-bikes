@@ -28,10 +28,12 @@ MapQuickItem {
         smooth: false
         source: app.getIcon("position")
     }
+
     Behavior on coordinate {
         CoordinateAnimation {
             duration: 500
             easing.type: Easing.Linear
         }
     }
+
 }

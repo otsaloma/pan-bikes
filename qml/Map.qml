@@ -25,7 +25,7 @@ import "."
 Map {
     id: map
     anchors.fill: parent
-    center: QtPositioning.coordinate(49, 13)
+    center: QtPositioning.coordinate(48.137, 11.575)
     gesture.enabled: true
     minimumZoomLevel: 3
     plugin: MapPlugin {}
@@ -48,6 +48,7 @@ Map {
 
     MenuButton {}
     PositionMarker {}
+    StatusMessage { id: statusMessage }
 
     Timer {
         // XXX: For some reason we need to do something to trigger
@@ -56,7 +57,7 @@ Map {
         id: patchTimer
         interval: 1000
         repeat: true
-        running: map.ready && app.running
+        running: app.running && map.ready
         triggeredOnStart: true
         property int timesRun: 0
         onTriggered: {
@@ -71,9 +72,8 @@ Map {
         id: updateTimer
         interval: 500
         repeat: true
-        running: py.ready && map.ready && app.running
-        onTriggered: (map.changed || Date.now() - map.utime > 60000) &&
-            map.updateStations();
+        running: app.running && page.status === PageStatus.Active && map.ready
+        onTriggered: (map.changed || Date.now() - map.utime > 60000) && map.updateStations();
     }
 
     MouseArea {
@@ -87,13 +87,15 @@ Map {
             var type = map.supportedMapTypes[i];
             if (type.style  === MapType.GrayStreetMap &&
                 type.mobile === true &&
-                type.night  === false)
+                type.night  === false) {
                 map.activeMapType = type;
+                break;
+            }
         }
         map.centerOnPosition();
         gps.onInitialCenterChanged.connect(map.centerOnPosition);
         // XXX: Must set zoomLevel in onCompleted.
-        // http://bugreports.qt-project.org/browse/QTBUG-40779
+        // https://bugreports.qt.io/browse/QTBUG-40779
         map.setZoomLevel(Screen.sizeCategory >= Screen.Large ? 15 : 14);
         map.ready = true;
     }
@@ -105,7 +107,7 @@ Map {
     }
 
     gesture.onPinchFinished: {
-        // Round piched zoom level to avoid fuzziness.
+        // Round piched zoom level to avoid blurry tiles.
         if (map.zoomLevel < map.zoomLevelPrev) {
             map.zoomLevel % 1 < 0.75 ?
                 map.setZoomLevel(Math.floor(map.zoomLevel)):
@@ -131,20 +133,19 @@ Map {
 
     function centerOnPosition() {
         // Center map on current position.
-        map.center = QtPositioning.coordinate(
-            gps.position.coordinate.latitude,
-            gps.position.coordinate.longitude);
-
+        var coord = gps.position.coordinate;
+        if (!coord.longitude || !coord.latitude) return;
+        map.center = QtPositioning.coordinate(coord.latitude, coord.longitude);
         map.centerFound = true;
     }
 
     function clearStations() {
         // Remove all station markers from the map.
-        for (var i = 0; i < map.stations.length; i++) {
-            map.removeMapItem(map.stations[i]);
-            map.stations[i].destroy();
+        while (map.stations.length > 0) {
+            var station = map.stations.pop();
+            map.removeMapItem(station);
+            station.destroy();
         }
-        map.stations = [];
     }
 
     function getBoundingBox() {
@@ -155,11 +156,9 @@ Map {
     }
 
     function setCenter(x, y) {
-        // Set the current center position.
-        // Create a new object to trigger animation.
+        // Center map on given coordinates.
         if (!x || !y) return;
         map.center = QtPositioning.coordinate(y, x);
-        map.changed = true;
     }
 
     function setZoomLevel(zoom) {
@@ -198,12 +197,12 @@ Map {
     }
 
     function updateStations() {
-        // Fetch data from Python backend and update station markers.
+        // Fetch data from the Python backend and update station markers.
         if (!py.ready) return;
         if (map.updating) return;
         map.updating = true;
-        var args = map.getBoundingBox();
-        py.call("pan.app.list_stations", args, function(results) {
+        var bbox = map.getBoundingBox();
+        py.call("pan.app.list_stations", [bbox], function(results) {
             var left = function(x) { return !x.found; };
             for (var i = 0; i < map.stations.length; i++)
                 map.stations[i].found = false;
@@ -216,14 +215,16 @@ Map {
             for (var i = 0; i < results.length; i++)
                 map.addStation(results[i]);
             // Inform user if not all stations are visible.
-            statusMessage.update();
+            statusMessage.update(bbox);
             map.updating = false;
             if (!map.centerFound) {
                 // If no positioning data has yet been received, we can
                 // fall back to centering on the network, which is possible
                 // after a list_stations call has been made.
                 py.call("pan.app.get_center", [], function(coord) {
-                    coord.x && coord.y && map.setCenter(coord.x, coord.y);
+                    if (!coord.x || !coord.y) return;
+                    map.setCenter(coord.x, coord.y);
+                    map.centerFound = true;
                 });
             }
         });
