@@ -197,8 +197,12 @@ def _request(method, url, body=None, encoding=None, retry=1, headers=None):
         connection.close()
         connection = None
         # These probably mean that the connection was broken.
-        broken = (BrokenPipeError, http.client.BadStatusLine)
-        if not isinstance(error, broken) or retry == 0:
+        broken = [
+            BrokenPipeError,
+            ConnectionResetError,
+            http.client.BadStatusLine,
+        ]
+        if not isinstance(error, tuple(broken)) or retry == 0:
             name = error.__class__.__name__
             print("{} failed: {}: {}"
                   .format(method, name, str(error)),
