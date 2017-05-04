@@ -23,47 +23,83 @@ import "."
 Page {
     id: page
     allowedOrientations: app.defaultAllowedOrientations
+
     SilicaFlickable {
         anchors.fill: parent
         contentHeight: column.height
+
         Column {
             id: column
             anchors.fill: parent
+
             property var info: null
-            PageHeader { title: "Pan Bikes" }
+
+            PageHeader {
+                title: "Pan Bikes"
+            }
+
             ValueButton {
                 id: networkButton
                 label: qsTranslate("", "Network")
-                value: app.conf.get("network_label") || app.conf.get("network")
+                value: app.conf.get("network_label")
                 width: parent.width
-                onClicked: {
-                    var dialog = app.pageStack.push("NetworkPage.qml");
-                    dialog.accepted.connect(function() {
-                        networkButton.value = app.conf.get("network_label") ||
-                            app.conf.get("network");
-                        column.addInfo();
+                onClicked: app.pageStack.push("NetworkPage.qml");
+            }
+
+            Item {
+                id: placeholder
+                height: info ? info.height : 0
+                width: parent.width
+                property var info: null
+            }
+
+            SectionHeader {
+                text: qsTranslate("", "Preferences")
+            }
+
+            TextField {
+                id: stationsField
+                inputMethodHints: Qt.ImhDigitsOnly | Qt.ImhNoPredictiveText
+                label: qsTranslate("", "Maximum amount of stations visible")
+                text: app.conf.get("max_stations").toString()
+                validator: RegExpValidator { regExp: /^[0-9]+$/ }
+                width: parent.width
+                EnterKey.enabled: text.length > 0
+                EnterKey.iconSource: "image://theme/icon-m-enter-close"
+                EnterKey.onClicked: stationsField.focus = false;
+                Component.onCompleted: {
+                    page.onStatusChanged.connect(function() {
+                        if (!stationsField.text.match(/^[0-9]+$/)) return;
+                        var value = parseInt(stationsField.text, 10);
+                        app.conf.set("max_stations", value);
+                        map.clearStations();
+                        map.changed = true;
                     });
                 }
             }
-            Component.onCompleted: column.addInfo();
-            function addInfo() {
+
+            Component.onCompleted:  {
                 // Add provider-specific info from provider's own QML file.
-                column.info && column.info.destroy();
+                placeholder.info && placeholder.info.destroy();
                 var uri = py.evaluate("pan.app.provider.info_qml_uri");
                 if (!uri) return;
                 var component = Qt.createComponent(uri);
-                column.info = component.createObject(column);
-                column.info.anchors.left = column.left;
-                column.info.anchors.right = column.right;
-                column.info.width = column.width;
+                placeholder.info = component.createObject(placeholder);
+                placeholder.info.anchors.left = placeholder.left;
+                placeholder.info.anchors.right = placeholder.right;
             }
+
         }
+
         PullDownMenu {
             MenuItem {
                 text: qsTranslate("", "About")
                 onClicked: app.pageStack.push("AboutPage.qml");
             }
         }
+
         VerticalScrollDecorator {}
+
     }
+
 }
