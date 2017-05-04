@@ -33,7 +33,6 @@ Map {
     property bool centerFound: false
     property bool changed: true
     property bool ready: false
-    property bool showOverlays: true
     property var  stations: []
     property var  updating: false
     property var  utime: -1
