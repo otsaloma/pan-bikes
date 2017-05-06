@@ -65,7 +65,7 @@ MapQuickItem {
             font.family: "sans-serif"
             font.pixelSize: Math.round(Theme.pixelRatio * 18)
             horizontalAlignment: Text.AlignRight
-            text: station.bikes
+            text: station.bikes != null ? station.bikes : "–"
         }
 
         Text {
@@ -78,7 +78,7 @@ MapQuickItem {
             font.family: "sans-serif"
             font.pixelSize: Math.round(Theme.pixelRatio * 18)
             horizontalAlignment: Text.AlignLeft
-            text: station.capacity
+            text: station.capacity != null ? station.capacity : "–"
         }
 
         Rectangle {
@@ -91,15 +91,26 @@ MapQuickItem {
             height: Theme.paddingSmall
             width: {
                 var total = bubble.width - 2 * anchors.leftMargin;
-                return Math.floor(station.bikes/station.capacity * total);
+                var bikes = station.bikes != null ? station.bikes : 0;
+                var capacity = station.capacity != null ? station.capacity : 10;
+                return Math.floor(Math.min(1, bikes/capacity) * total);
             }
         }
 
     }
 
-    property int bikes: 0
-    property int capacity: 0
+    // Use var so that we can have nulls,
+    // int can't hold null, undefined or NaN.
+    property var bikes: 0
+    property var capacity: 0
     property bool found: false
     property string uid: ""
+
+    function setCounts(freeBikes, emptySlots) {
+        // Update bike count and capacity, accounting for missing data.
+        station.bikes = freeBikes;
+        station.capacity = (freeBikes != null && emptySlots != null) ?
+            freeBikes + emptySlots : null;
+    }
 
 }

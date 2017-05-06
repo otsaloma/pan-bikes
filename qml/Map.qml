@@ -124,8 +124,7 @@ Map {
         var station = component.createObject(map);
         station.uid = props.id;
         station.coordinate = QtPositioning.coordinate(props.y, props.x);
-        station.bikes = props.free_bikes;
-        station.capacity = props.free_bikes + props.empty_slots;
+        station.setCounts(props.free_bikes, props.empty_slots);
         map.stations.push(station);
         map.addMapItem(station);
     }
@@ -172,8 +171,7 @@ Map {
             if (map.stations[i].uid !== props.id) continue;
             var coord = QtPositioning.coordinate(props.y, props.x);
             map.stations[i].coordinate = coord;
-            map.stations[i].bikes = props.free_bikes;
-            map.stations[i].capacity = props.free_bikes + props.empty_slots;
+            map.stations[i].setCounts(props.free_bikes, props.empty_slots);
             props.found = true;
             map.stations[i].found = true;
             return;
@@ -187,8 +185,7 @@ Map {
             var coord = QtPositioning.coordinate(props.y, props.x);
             map.stations[i].uid = props.id;
             map.stations[i].coordinate = coord;
-            map.stations[i].bikes = props.free_bikes;
-            map.stations[i].capacity = props.free_bikes + props.empty_slots;
+            map.stations[i].setCounts(props.free_bikes, props.empty_slots);
             props.found = true;
             map.stations[i].found = true;
             return;
