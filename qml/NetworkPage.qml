@@ -150,8 +150,8 @@ Page {
     function loadNetworks() {
         // Load provider model entries from the Python backend.
         view.model.clear();
-        var x = gps.position.coordinate.longitude || map.center.longitude;
-        var y = gps.position.coordinate.latitude || map.center.latitude;
+        var x = map.center.longitude || 0;
+        var y = map.center.latitude || 0;
         py.call("pan.app.list_networks", [x, y], function(results) {
             if (results && results.error && results.message) {
                 busy.error = results.message;
