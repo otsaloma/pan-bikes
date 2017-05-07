@@ -41,5 +41,7 @@ class TestModule(pan.test.TestCase):
         for station in stations:
             assert station.empty_slots >= 0
             assert station.free_bikes >= 0
+            assert station.id
+            assert station.name
             assert station.x
             assert station.y

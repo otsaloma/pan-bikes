@@ -48,6 +48,7 @@ def list_stations(network):
         empty_slots=station.spacesAvailable,
         free_bikes=station.bikesAvailable,
         id=station.id,
+        name=station.name,
         x=station.x,
         y=station.y,
     ) for station in stations.stations]
