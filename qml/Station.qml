@@ -29,10 +29,10 @@ MapQuickItem {
         Rectangle {
             id: bubble
             anchors.bottom: bar.bottom
-            anchors.left: bikesText.left
+            anchors.left: counts.left
             anchors.margins: -Theme.paddingSmall
-            anchors.right: capacityText.right
-            anchors.top: separator.top
+            anchors.right: counts.right
+            anchors.top: counts.top
             color: "#d0000000"
         }
 
@@ -47,70 +47,58 @@ MapQuickItem {
         }
 
         Text {
-            id: separator
+            id: counts
             color: "white"
             font.bold: true
             font.family: "sans-serif"
             font.pixelSize: Math.round(Theme.pixelRatio * 18)
-            text: "/"
-        }
-
-        Text {
-            id: bikesText
-            anchors.baseline: separator.baseline
-            anchors.right: separator.left
-            anchors.rightMargin: Math.round(Theme.pixelRatio * 2)
-            color: "white"
-            font.bold: true
-            font.family: "sans-serif"
-            font.pixelSize: Math.round(Theme.pixelRatio * 18)
-            horizontalAlignment: Text.AlignRight
-            text: station.bikes != null ? station.bikes : "–"
-        }
-
-        Text {
-            id: capacityText
-            anchors.baseline: separator.baseline
-            anchors.left: separator.right
-            anchors.leftMargin: Math.round(Theme.pixelRatio * 2)
-            color: "white"
-            font.bold: true
-            font.family: "sans-serif"
-            font.pixelSize: Math.round(Theme.pixelRatio * 18)
-            horizontalAlignment: Text.AlignLeft
-            text: station.capacity != null ? station.capacity : "–"
+            horizontalAlignment: Text.AlignHCenter
+            text: station.label
+            width: Math.max(implicitWidth, arrow.width + Theme.paddingSmall)
+            onTextChanged: counts.doLayout();
         }
 
         Rectangle {
             id: bar
             anchors.left: bubble.left
             anchors.leftMargin: Theme.paddingSmall
-            anchors.top: capacityText.bottom
+            anchors.top: counts.bottom
             anchors.topMargin: Theme.paddingSmall
             color: Theme.highlightColor
             height: Theme.paddingSmall
             width: {
                 var total = bubble.width - 2 * anchors.leftMargin;
-                var bikes = station.bikes != null ? station.bikes : 0;
-                var capacity = station.capacity != null ? station.capacity : 10;
+                var bikes = station.bikes > -1 ? station.bikes : 0;
+                var capacity = station.capacity > -1 ? station.capacity : 10;
                 return Math.floor(Math.min(1, bikes/capacity) * total);
             }
         }
 
     }
 
-    // Use var so that we can have nulls,
-    // int can't hold null, undefined or NaN.
-    property var bikes: 0
-    property var capacity: 0
+    property int bikes: 0
+    property int capacity: 0
     property bool found: false
+    property string label: ""
     property string uid: ""
 
     function setCounts(freeBikes, emptySlots) {
-        // Update bike count and capacity, accounting for missing data.
-        station.bikes = freeBikes;
-        station.capacity = (freeBikes != null && emptySlots != null) ?
-            freeBikes + emptySlots : null;
+        // Update bike and capacity counts, accounting for missing data.
+        // Missing freeBikes should be a rare error, but many networks don't provide
+        // emptySlots at all, in which case it's better to show only the bike count.
+        if (freeBikes != null) {
+            station.bikes = freeBikes;
+            station.label = freeBikes.toString();
+        } else {
+            station.bikes = -1;
+            station.label = "–";
+        }
+        if (freeBikes != null && emptySlots != null) {
+            station.capacity = freeBikes + emptySlots;
+            station.label += "\u200a/\u200a%1".arg(station.capacity);
+        } else {
+            station.capacity = -1;
+        }
     }
 
 }

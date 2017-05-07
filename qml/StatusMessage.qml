@@ -53,7 +53,7 @@ Item {
         // Update the amount of visible and total stations.
         py.call("pan.app.get_total_stations", [bbox], function(total) {
             var limit = app.conf.get("max_stations");
-            message.text = total > limit ? "%1/%2".arg(limit).arg(total) : "";
+            message.text = total > limit ? "%1\u200a/\u200a%2".arg(limit).arg(total) : "";
         });
     }
 
