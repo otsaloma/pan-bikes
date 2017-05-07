@@ -27,23 +27,25 @@ def list_networks():
     """Return a list of supported city bike networks."""
     url = "https://api.citybik.es/v2/networks?fields=id,location,name"
     networks = pan.http.get_json(url)
+    networks = pan.AttrDict(networks)
     return [dict(
-        city=network["location"]["city"],
-        country=network["location"]["country"],
-        id=network["id"],
-        name=network["name"],
-        x=network["location"]["longitude"],
-        y=network["location"]["latitude"],
-    ) for network in networks["networks"]]
+        city=network.location.city,
+        country=network.location.country,
+        id=network.id,
+        name=network.name,
+        x=network.location.longitude,
+        y=network.location.latitude,
+    ) for network in networks.networks]
 
 def list_stations(network):
     """Return a list of bike stations and their occupancy."""
     url = "http://api.citybik.es/v2/networks/{}?fields=stations".format(network)
     stations = pan.http.get_json(url)
+    stations = pan.AttrDict(stations)
     return [dict(
-        empty_slots=station["empty_slots"],
-        free_bikes=station["free_bikes"],
-        id=station["id"],
-        x=station["longitude"],
-        y=station["latitude"],
-    ) for station in stations["network"]["stations"]]
+        empty_slots=station.empty_slots,
+        free_bikes=station.free_bikes,
+        id=station.id,
+        x=station.longitude,
+        y=station.latitude,
+    ) for station in stations.network.stations]

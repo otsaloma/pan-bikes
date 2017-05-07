@@ -70,8 +70,6 @@ class Provider:
         self._path = path
         self._provider = None
         self._stations = {}
-        self.stations_returned = 0
-        self.stations_total = 0
         self._stations_utime = -1
         self._init_provider(id, re.sub(r"\.json$", ".py", path))
 

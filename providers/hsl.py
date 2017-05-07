@@ -43,10 +43,11 @@ def list_stations(network):
     """Return a list of bike stations and their occupancy."""
     url = "https://api.digitransit.fi/routing/v1/routers/hsl/bike_rental"
     stations = pan.http.get_json(url, headers=HEADERS)
+    stations = pan.AttrDict(stations)
     return [dict(
-        empty_slots=station["spacesAvailable"],
-        free_bikes=station["bikesAvailable"],
-        id=station["id"],
-        x=station["x"],
-        y=station["y"],
-    ) for station in stations["stations"]]
+        empty_slots=station.spacesAvailable,
+        free_bikes=station.bikesAvailable,
+        id=station.id,
+        x=station.x,
+        y=station.y,
+    ) for station in stations.stations]

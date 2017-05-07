@@ -25,7 +25,7 @@ class TestProvider(pan.test.TestCase):
         self.network = "citybikes-helsinki"
         self.bbox = [24.84592, 24.89656, 60.14359, 60.17110]
 
-    def test___new____yes(self):
+    def test___new__(self):
         a = pan.Provider("citybikes")
         b = pan.Provider("citybikes")
         assert a is b
@@ -38,9 +38,9 @@ class TestProvider(pan.test.TestCase):
 
     def test_get_total_stations(self):
         self.provider.list_stations(self.network)
-        get_total = self.provider.get_total_stations
-        assert 100 < get_total(self.network) < 200
-        assert 6 < get_total(self.network, self.bbox) < 12
+        total = self.provider.get_total_stations
+        assert 100 < total(self.network) < 200
+        assert 6 < total(self.network, self.bbox) < 12
 
     def test_list_networks(self):
         networks = self.provider.list_networks(x=24.941, y=60.169)

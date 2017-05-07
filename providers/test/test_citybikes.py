@@ -25,19 +25,21 @@ class TestModule(pan.test.TestCase):
 
     def test_list_networks(self):
         networks = self.provider.list_networks()
+        networks = list(map(pan.AttrDict, networks))
         assert networks
         for network in networks:
-            assert network["city"]
-            assert network["country"]
-            assert network["id"]
-            assert network["x"]
-            assert network["y"]
+            assert network.city
+            assert network.country
+            assert network.id
+            assert network.x
+            assert network.y
 
     def test_list_stations(self):
         stations = self.provider.list_stations("citybikes-helsinki")
+        stations = list(map(pan.AttrDict, stations))
         assert stations
         for station in stations:
-            assert station["empty_slots"] >= 0
-            assert station["free_bikes"] >= 0
-            assert station["x"]
-            assert station["y"]
+            assert station.empty_slots >= 0
+            assert station.free_bikes >= 0
+            assert station.x
+            assert station.y
