@@ -71,7 +71,7 @@ Map {
         id: updateTimer
         interval: 500
         repeat: true
-        running: app.running && page.status === PageStatus.Active && map.ready
+        running: app.running && (page.status === PageStatus.Active || cover.active) && map.ready
         onTriggered: (map.changed || Date.now() - map.utime > 60000) && map.updateStations();
     }
 
@@ -123,6 +123,7 @@ Map {
         var component = Qt.createComponent("Station.qml");
         var station = component.createObject(map);
         station.uid = props.id;
+        station.name = props.name;
         station.coordinate = QtPositioning.coordinate(props.y, props.x);
         station.setCounts(props.free_bikes, props.empty_slots);
         map.stations.push(station);
@@ -170,6 +171,7 @@ Map {
         for (var i = 0; i < map.stations.length; i++) {
             if (map.stations[i].uid !== props.id) continue;
             var coord = QtPositioning.coordinate(props.y, props.x);
+            map.stations[i].name = props.name;
             map.stations[i].coordinate = coord;
             map.stations[i].setCounts(props.free_bikes, props.empty_slots);
             props.found = true;
@@ -184,6 +186,7 @@ Map {
             if (map.stations[i].found) continue;
             var coord = QtPositioning.coordinate(props.y, props.x);
             map.stations[i].uid = props.id;
+            map.stations[i].name = props.name;
             map.stations[i].coordinate = coord;
             map.stations[i].setCounts(props.free_bikes, props.empty_slots);
             props.found = true;
@@ -212,6 +215,7 @@ Map {
                 map.addStation(results[i]);
             // Inform user if not all stations are visible.
             statusMessage.update(bbox);
+            cover.update(bbox);
             map.updating = false;
             if (!map.centerFound) {
                 // If no positioning data has yet been received, we can

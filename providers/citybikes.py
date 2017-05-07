@@ -22,6 +22,7 @@ https://api.citybik.es/v2/
 """
 
 import pan
+import re
 
 def list_networks():
     """Return a list of supported city bike networks."""
@@ -46,7 +47,14 @@ def list_stations(network):
         empty_slots=station.empty_slots,
         free_bikes=station.free_bikes,
         id=station.id,
-        name=station.name,
+        name=parse_station_name(station),
         x=station.longitude,
         y=station.latitude,
     ) for station in stations.network.stations]
+
+def parse_station_name(station):
+    """Return short human readable station name."""
+    # Many networks seem to include preceding numbers
+    # and trailing city or neighbourhood names.
+    # e.g. 200218 - Addison Road, Holland Park
+    return re.sub(r"^[\d\W]+", "", station.name).split(",")[0].strip()

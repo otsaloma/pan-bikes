@@ -41,7 +41,7 @@ class Application:
         """Return the total amount of bike stations for the current network."""
         return self.provider.get_total_stations(pan.conf.network, bbox)
 
-    def list_networks(self, x, y):
+    def list_networks(self, x=0, y=0):
         """Return a list of bike networks from all providers."""
         networks = []
         for provider in pan.util.get_providers():
@@ -51,7 +51,7 @@ class Application:
         networks = copy.deepcopy(networks)
         return pan.util.sorted_by_distance(networks, x, y)
 
-    def list_stations(self, bbox):
+    def list_stations(self, bbox=None):
         """Return a list of bike stations for the current network."""
         return self.provider.list_stations(pan.conf.network, bbox)
 

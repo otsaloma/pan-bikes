@@ -80,6 +80,7 @@ MapQuickItem {
     property int capacity: 0
     property bool found: false
     property string label: ""
+    property string name: ""
     property string uid: ""
 
     function setCounts(freeBikes, emptySlots) {
