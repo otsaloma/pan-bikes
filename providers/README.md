@@ -18,15 +18,15 @@ Python API should be evident from the providers shipped with Pan Bikes –
 you can start by copying one of those and adapting the code.
 
 To download data you should always use `pan.http.get`,
-`pan.http.get_json` or `pan.http.post` in order to use Pan Bikes'
-user-agent, default timeout and error handling. See the providers
-shipped with Pan Bikes for examples.
+`pan.http.get_json` etc. in order to use Pan Bikes' user-agent, default
+timeout and error handling. See the providers shipped with Pan Bikes for
+examples.
 
 Use `~/.local/share/harbour-pan-bikes/providers` as a local installation
 directory in which to place your files. Restart Pan Bikes, and your
-provider should be loaded, listed and available for use. During
-development, consider keeping your files under the Pan Bikes source tree
-and using the Python interpreter or a test script, e.g.
+provider should be loaded, its networks listed and available for use.
+During development, consider keeping your files under the Pan Bikes
+source tree and using the Python interpreter or a test script, e.g.
 
 ```python
 >>> import pan

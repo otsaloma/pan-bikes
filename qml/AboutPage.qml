@@ -75,12 +75,11 @@ Page {
                 font.pixelSize: Theme.fontSizeSmall
                 height: visible ? Theme.itemSizeExtraSmall : 0
                 horizontalAlignment: Text.AlignHCenter
-                // TRANSLATORS: This is a special message that shouldn't be
-                // translated literally. It is used in the about page to give
-                // credits to the translators. Thus, you should translate it to
-                // your name. You can also include other translators who have
-                // contributed to this translation; in that case, please write
-                // them on separate lines seperated by newlines (\n).
+                // TRANSLATORS: This is a special message that shouldn't be translated
+                // literally. It is used in the about page to give credits to the translators.
+                // Thus, you should translate it to your name. You can also include other
+                // translators who have contributed to this translation; in that case, please
+                // write them on separate lines seperated by newlines (\n).
                 text: qsTranslate("", "translator-credits")
                 visible: text && text !== "translator-credits"
             }

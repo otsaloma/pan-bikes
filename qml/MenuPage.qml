@@ -67,15 +67,13 @@ Page {
                 EnterKey.enabled: text.length > 0
                 EnterKey.iconSource: "image://theme/icon-m-enter-close"
                 EnterKey.onClicked: stationsField.focus = false;
-                Component.onCompleted: {
-                    page.onStatusChanged.connect(function() {
-                        if (!stationsField.text.match(/^[0-9]+$/)) return;
-                        var value = parseInt(stationsField.text, 10);
-                        app.conf.set("max_stations", value);
-                        map.clearStations();
-                        map.changed = true;
-                    });
-                }
+                Component.onCompleted: page.onStatusChanged.connect(function() {
+                    if (!stationsField.text.match(/^[0-9]+$/)) return;
+                    var value = parseInt(stationsField.text, 10);
+                    app.conf.set("max_stations", value);
+                    map.clearStations();
+                    map.changed = true;
+                });
             }
 
             Component.onCompleted:  {
