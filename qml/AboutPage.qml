@@ -46,7 +46,7 @@ Page {
                 anchors.horizontalCenter: parent.horizontalCenter
                 height: Theme.itemSizeLarge
                 preferredWidth: Theme.buttonWidthMedium
-                text: "GitHub page"
+                text: qsTranslate("", "GitHub page")
                 onClicked: Qt.openUrlExternally("https://github.com/otsaloma/pan-bikes");
             }
 
@@ -98,7 +98,7 @@ Page {
                 anchors.horizontalCenter: parent.horizontalCenter
                 height: Theme.itemSizeLarge
                 preferredWidth: Theme.buttonWidthMedium
-                text: "Transifex page"
+                text: qsTranslate("", "Transifex page")
                 onClicked: Qt.openUrlExternally("https://www.transifex.com/otsaloma/pan-bikes/");
             }
 

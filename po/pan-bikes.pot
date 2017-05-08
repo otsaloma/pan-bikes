@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-08 00:46+0300\n"
+"POT-Creation-Date: 2017-05-09 01:23+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,6 +37,10 @@ msgstr ""
 msgid "version %1"
 msgstr ""
 
+#: qml/AboutPage.qml:49
+msgid "GitHub page"
+msgstr ""
+
 #: qml/AboutPage.qml:66
 msgid "Pan Bikes is free software released under the GNU General Public License (GPL), version 3 or later."
 msgstr ""
@@ -56,6 +60,10 @@ msgstr ""
 
 #: qml/AboutPage.qml:93
 msgid "You can add new user interface translations or contribute to existing ones at Transifex."
+msgstr ""
+
+#: qml/AboutPage.qml:101
+msgid "Transifex page"
 msgstr ""
 
 #: qml/MenuPage.qml:43
