@@ -45,30 +45,20 @@ Map {
         }
     }
 
+    Behavior on zoomLevel {
+        id: zoomAnimation
+        enabled: false
+        NumberAnimation {
+            duration: 200
+            easing.type: Easing.Linear
+        }
+    }
+
     MenuButton {}
     PositionMarker {}
     StatusMessage { id: statusMessage }
 
     Timer {
-        // XXX: For some reason we need to do something to trigger
-        // a redraw to avoid only a part of tiles being displayed
-        // right at start before any user panning or zooming.
-        id: patchTimer
-        interval: 1000
-        repeat: true
-        running: app.running && map.ready
-        triggeredOnStart: true
-        property int timesRun: 0
-        onTriggered: {
-            map.pan(+2, -2);
-            map.pan(-2, +2);
-            patchTimer.timesRun++;
-            patchTimer.running = patchTimer.timesRun < 5;
-        }
-    }
-
-    Timer {
-        id: updateTimer
         interval: 500
         repeat: true
         running: app.running && (page.status === PageStatus.Active || cover.active) && map.ready
@@ -162,8 +152,10 @@ Map {
 
     function setZoomLevel(zoom) {
         // Set the current zoom level.
+        zoomAnimation.enabled = true;
         map.zoomLevel = zoom;
         map.zoomLevelPrev = zoom;
+        zoomAnimation.enabled = false;
     }
 
     function updateStationMatching(props) {
