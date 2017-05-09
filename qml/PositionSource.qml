@@ -21,7 +21,7 @@ import QtPositioning 5.3
 
 PositionSource {
     id: gps
-    active: app.running
+    active: Qt.application.active
 
     property var coordPrev: QtPositioning.coordinate(0, 0)
     property var initialCenter: QtPositioning.coordinate(48.137, 11.575)
