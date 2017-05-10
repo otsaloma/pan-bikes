@@ -29,11 +29,11 @@ CoverBackground {
     Image {
         id: image
         anchors.centerIn: parent
-        height: 0.9 * parent.height
-        opacity: 0.15
+        height: width/sourceSize.width * sourceSize.height
+        opacity: 0.1
         smooth: true
         source: "icons/cover.png"
-        width: height/sourceSize.height * sourceSize.width
+        width: 2 * parent.width
     }
 
     Label {
