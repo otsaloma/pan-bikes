@@ -10,17 +10,17 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-09 21:34+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Osmo Salomaa <otsaloma@iki.fi>, 2017\n"
-"Language-Team: Finnish (https://www.transifex.com/otsaloma/teams/74551/fi/)\n"
+"Last-Translator: Carmen Fernández B. <carmenfdezb@yahoo.es>, 2017\n"
+"Language-Team: Spanish (https://www.transifex.com/otsaloma/teams/74551/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: fi\n"
+"Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: pan/util.py:52
 msgid "Connection timed out"
-msgstr "Yhteys aikakatkaistiin"
+msgstr "El tiempo de conexión ha expirado"
 
 #: providers/citybikes_info.qml:28
 msgid ""
@@ -28,42 +28,42 @@ msgid ""
 "not supported, or you see an error in the data, you can contribute to the "
 "pybikes backend of that API by filing an issue and/or contributing code."
 msgstr ""
-"Tiedot haetaan citybik.es-rajapinnan kautta. Mikäli paikallinen "
-"kaupunkipyöräjärjestelmäsi ei ole tuettu, tai näet virheen tiedoissa, voit "
-"ilmoittaa asiasta rajapinnan pybikes-taustajärjestelmään tai osallistua sen "
-"kehittämiseen."
+"Los datos proceden de la API de citybik.es. Si el sistema de bicicletas de "
+"tu localidad no está soportada o ves un error en los datos, puedes "
+"contrubuir en el backend del API enviando una incidencia y/o contribuyendo "
+"en el código."
 
 #: providers/hsl_info.qml:28
 msgid ""
 "You need to register to use city bikes. See HSL web pages for more "
 "information."
 msgstr ""
-"Kaupunkipyörien käyttö edellyttää rekisteröitymistä. Katso lisätietoja HSL:n"
-" sivuilta."
+"Para usar las bicicletas es necesario registrarse. Para más información "
+"consulta las páginas Web de HSL."
 
 #: qml/AboutPage.qml:36
 msgid "About Pan Bikes"
-msgstr "Tietoja Pan Bikesista"
+msgstr "Acerca de Pan Bikes"
 
 #: qml/AboutPage.qml:42
 msgid "version %1"
-msgstr "versio %1"
+msgstr "versión %1"
 
 #: qml/AboutPage.qml:49
 msgid "GitHub page"
-msgstr "GitHub-sivu"
+msgstr "Página de GitHub"
 
 #: qml/AboutPage.qml:66
 msgid ""
 "Pan Bikes is free software released under the GNU General Public License "
 "(GPL), version 3 or later."
 msgstr ""
-"Pan Bikes on vapaa ohjelmisto, julkaistu lisenssillä GNU General Public "
-"License (GPL), versio 3 tai uudempi."
+"Pan Bikes es un programa libre publicado bajo Licencia General Pública de "
+"GNU (GPL), versión 3 o posterior."
 
 #: qml/AboutPage.qml:71
 msgid "Translated by"
-msgstr "Käännös"
+msgstr "Traducido por"
 
 #. TRANSLATORS: This is a special message that shouldn't be translated
 #. literally. It is used in the about page to give credits to the translators.
@@ -72,52 +72,52 @@ msgstr "Käännös"
 #. write them on separate lines seperated by newlines (\n).
 #: qml/AboutPage.qml:83
 msgid "translator-credits"
-msgstr "Osmo Salomaa"
+msgstr "Carmen Fernández B."
 
 #: qml/AboutPage.qml:93
 msgid ""
 "You can add new user interface translations or contribute to existing ones "
 "at Transifex."
 msgstr ""
-"Voit lisätä uusia käyttöliittymäkäännöksiä tai osallistua nykyisten "
-"käännösten parantamiseen Transifexissa."
+"Puedes añadir nuevas traducciones de la interfaz de usuario o participar en "
+"las existentes en Transifex."
 
 #: qml/AboutPage.qml:101
 msgid "Transifex page"
-msgstr "Transifex-sivu"
+msgstr "Página de Transifex"
 
 #: qml/MenuPage.qml:43
 msgid "Network"
-msgstr "Verkko"
+msgstr "Red"
 
 #: qml/MenuPage.qml:57
 msgid "Preferences"
-msgstr "Asetukset"
+msgstr "Preferencias"
 
 #: qml/MenuPage.qml:63
 msgid "Maximum amount of stations visible"
-msgstr "Näytettävien asemien enimmäismäärä"
+msgstr "Número máximo de estaciones visibles"
 
 #: qml/MenuPage.qml:94
 msgid "About"
-msgstr "Tietoja"
+msgstr "Acerca de"
 
 #: qml/NetworkPage.qml:67
 msgid "via %1"
-msgstr "via %1"
+msgstr "A través de %1"
 
 #: qml/NetworkPage.qml:89
 msgid "Networks"
-msgstr "Verkot"
+msgstr "Redes"
 
 #: qml/NetworkPage.qml:94
 msgid "Search"
-msgstr "Etsi"
+msgstr "Buscar"
 
 #: qml/NetworkPage.qml:121
 msgid "Loading"
-msgstr "Ladataan"
+msgstr "Cargando"
 
 #: qml/NetworkPage.qml:164
 msgid "No networks found"
-msgstr "Ei verkkoja"
+msgstr "No se han encontrado redes"
