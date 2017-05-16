@@ -176,13 +176,18 @@ def _request(method, url, body=None, encoding=None, retry=1, headers=None):
     print("{} {}".format(method, url))
     try:
         connection = pool.get(url)
+        # Do relative requests (without scheme and netloc)
+        # for better compatiblity.
+        components = urllib.parse.urlparse(url)
+        components = ("", "") + components[2:]
+        path = urllib.parse.urlunparse(components)
         headall = HEADERS.copy()
         headall.update(headers or {})
         if isinstance(body, str):
             # UTF-8 is likely to work in most cases,
             # otherwise caller can encode and give bytes.
             body = body.encode("utf_8")
-        connection.request(method, url, body, headers=headall)
+        connection.request(method, path, body, headers=headall)
         response = connection.getresponse()
         # Always read response to avoid
         # http.client.ResponseNotReady: Request-sent.
