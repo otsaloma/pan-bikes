@@ -33,9 +33,8 @@ class AttrDict(dict):
     def __coerce(self, value):
         """Return value with dicts as AttrDicts."""
         if isinstance(value, AttrDict):
-            # Assume all children are AttrDicts as well.
-            # This allows us to do a fast AttrDict(d) to
-            # ensure that we're handling an AttrDict.
+            # Assume all children are AttrDicts as well. This allows us to do
+            # a fast AttrDict(d) to ensure that we're handling an AttrDict.
             return value
         if isinstance(value, dict):
             return AttrDict(value)
@@ -48,16 +47,18 @@ class AttrDict(dict):
         try:
             return self.__delitem__(name)
         except KeyError:
-            raise AttributeError("{} object has no attribute {}"
-                                 .format(repr(type(self)), repr(name)))
+            message = "{} object has no attribute {}"
+            message = message.format(repr(type(self)), repr(name))
+            raise AttributeError(message)
 
     def __getattr__(self, name):
         """Return `name` from dictionary."""
         try:
             return self.__getitem__(name)
         except KeyError:
-            raise AttributeError("{} object has no attribute {}"
-                                 .format(repr(type(self)), repr(name)))
+            message = "{} object has no attribute {}"
+            message = message.format(repr(type(self)), repr(name))
+            raise AttributeError(message)
 
     def __setattr__(self, name, value):
         """Set `name` to `value` in dictionary."""

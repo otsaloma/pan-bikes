@@ -177,7 +177,7 @@ def _request(method, url, body=None, encoding=None, retry=1, headers=None):
     try:
         connection = pool.get(url)
         # Do relative requests (without scheme and netloc)
-        # for better compatiblity.
+        # for better compatibility with different servers.
         components = urllib.parse.urlparse(url)
         components = ("", "") + components[2:]
         path = urllib.parse.urlunparse(components)
