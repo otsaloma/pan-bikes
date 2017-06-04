@@ -1,3 +1,9 @@
+2017-06-04: Pan Bikes 0.2
+=========================
+
+* Revise app icon
+* Add Polish and Slovenian translations
+
 2017-05-13: Pan Bikes 0.1.1
 ===========================
 

@@ -1,7 +1,7 @@
 # -*- coding: us-ascii-unix -*-
 
 NAME       = harbour-pan-bikes
-VERSION    = 0.1.1
+VERSION    = 0.2
 LANGS      = $(basename $(notdir $(wildcard po/*.po)))
 POT_FILE   = po/pan-bikes.pot
 
