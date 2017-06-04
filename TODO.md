@@ -1,4 +1,5 @@
 Pan Bikes 0.2
 =============
 
-* [x] Tweak app icon
+* [x] Revise app icon
+* [x] Add Polish and Slovenian translations

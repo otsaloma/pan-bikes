@@ -10,17 +10,17 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-04 03:10+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Carmen Fernández B. <carmenfdezb@yahoo.es>, 2017\n"
-"Language-Team: Spanish (https://www.transifex.com/otsaloma/teams/74551/es/)\n"
+"Last-Translator: Boštjan Štrumbelj <sponka@gmail.com>, 2017\n"
+"Language-Team: Slovenian (Slovenia) (https://www.transifex.com/otsaloma/teams/74551/sl_SI/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: es\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: sl_SI\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 
 #: pan/util.py:52
 msgid "Connection timed out"
-msgstr "El tiempo de conexión ha expirado"
+msgstr "Čas za povezavo je potekel."
 
 #: providers/citybikes_info.qml:28
 msgid ""
@@ -28,42 +28,41 @@ msgid ""
 "not supported, or you see an error in the data, you can contribute to the "
 "pybikes backend of that API by filing an issue and/or contributing code."
 msgstr ""
-"Los datos proceden de la API de citybik.es. Si el sistema de bicicletas de "
-"tu localidad no está soportada o ves un error en los datos, puedes "
-"contrubuir en el backend del API enviando una incidencia y/o contribuyendo "
-"en el código."
+"Podatki se pridobivajo preko citybik.es API. Če vaš lokalni ponudnik ni "
+"podprt ali opazite napake, lahko prispevate k razvoju pybikes s poročanjem "
+"težav in kodo."
 
 #: providers/hsl_info.qml:28
 msgid ""
 "You need to register to use city bikes. See HSL web pages for more "
 "information."
 msgstr ""
-"Para usar las bicicletas es necesario registrarse. Para más información "
-"consulta las páginas Web de HSL."
+"Za uporabo koles je potrebna registracija. Za podrobnosti poglejte spletno "
+"stran HSL."
 
 #: qml/AboutPage.qml:36
 msgid "About Pan Bikes"
-msgstr "Acerca de Pan Bikes"
+msgstr "O programu Pan BIkes"
 
 #: qml/AboutPage.qml:42
 msgid "version %1"
-msgstr "versión %1"
+msgstr "Različica %1"
 
 #: qml/AboutPage.qml:49
 msgid "GitHub page"
-msgstr "Página de GitHub"
+msgstr "GitHub spletna stran"
 
 #: qml/AboutPage.qml:66
 msgid ""
 "Pan Bikes is free software released under the GNU General Public License "
 "(GPL), version 3 or later."
 msgstr ""
-"Pan Bikes es un programa libre publicado bajo Licencia General Pública de "
-"GNU (GPL), versión 3 o posterior."
+"Pan Bikes je brezplačen program, izdan pod licenco GNU General Public "
+"License (GPL), različica 3 ali kasnejše."
 
 #: qml/AboutPage.qml:71
 msgid "Translated by"
-msgstr "Traducido por"
+msgstr "Prevod"
 
 #. TRANSLATORS: This is a special message that shouldn't be translated
 #. literally. It is used in the about page to give credits to the translators.
@@ -72,52 +71,50 @@ msgstr "Traducido por"
 #. write them on separate lines seperated by newlines (\n).
 #: qml/AboutPage.qml:83
 msgid "translator-credits"
-msgstr "Carmen Fernández B."
+msgstr "sponka"
 
 #: qml/AboutPage.qml:93
 msgid ""
 "You can add new user interface translations or contribute to existing ones "
 "at Transifex."
 msgstr ""
-"Puedes añadir nuevas traducciones de la interfaz de usuario o participar en "
-"las existentes en Transifex."
 
 #: qml/AboutPage.qml:101
 msgid "Transifex page"
-msgstr "Página de Transifex"
+msgstr "Transifex spletna stran"
 
 #: qml/MenuPage.qml:43
 msgid "Network"
-msgstr "Red"
+msgstr "Izbrana lokacija"
 
 #: qml/MenuPage.qml:57
 msgid "Preferences"
-msgstr "Preferencias"
+msgstr "Nastavitve"
 
 #: qml/MenuPage.qml:63
 msgid "Maximum amount of stations visible"
-msgstr "Número máximo de estaciones visibles"
+msgstr "Največje število vidnih postajališč"
 
 #: qml/MenuPage.qml:94
 msgid "About"
-msgstr "Acerca de"
+msgstr "O programu"
 
 #: qml/NetworkPage.qml:67
 msgid "via %1"
-msgstr "A través de %1"
+msgstr "preko %1"
 
 #: qml/NetworkPage.qml:89
 msgid "Networks"
-msgstr "Redes"
+msgstr "Lokacije in ponudniki"
 
 #: qml/NetworkPage.qml:94
 msgid "Search"
-msgstr "Buscar"
+msgstr "Iskanje"
 
 #: qml/NetworkPage.qml:121
 msgid "Loading"
-msgstr "Cargando"
+msgstr "Prenašam"
 
 #: qml/NetworkPage.qml:164
 msgid "No networks found"
-msgstr "No se han encontrado redes"
+msgstr "Ne najdem lokacij"

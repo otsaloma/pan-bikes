@@ -2,20 +2,20 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-09 21:34+0300\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"POT-Creation-Date: 2017-06-04 03:10+0300\n"
+"PO-Revision-Date: 2017-06-04 03:11+0300\n"
 "Last-Translator: Osmo Salomaa <otsaloma@iki.fi>, 2017\n"
 "Language-Team: Finnish (https://www.transifex.com/otsaloma/teams/74551/fi/)\n"
+"Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: fi\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: pan/util.py:52
@@ -23,23 +23,12 @@ msgid "Connection timed out"
 msgstr "Yhteys aikakatkaistiin"
 
 #: providers/citybikes_info.qml:28
-msgid ""
-"Data is provided via the citybik.es API. If your local city bike system is "
-"not supported, or you see an error in the data, you can contribute to the "
-"pybikes backend of that API by filing an issue and/or contributing code."
-msgstr ""
-"Tiedot haetaan citybik.es-rajapinnan kautta. Mikäli paikallinen "
-"kaupunkipyöräjärjestelmäsi ei ole tuettu, tai näet virheen tiedoissa, voit "
-"ilmoittaa asiasta rajapinnan pybikes-taustajärjestelmään tai osallistua sen "
-"kehittämiseen."
+msgid "Data is provided via the citybik.es API. If your local city bike system is not supported, or you see an error in the data, you can contribute to the pybikes backend of that API by filing an issue and/or contributing code."
+msgstr "Tiedot haetaan citybik.es-rajapinnan kautta. Mikäli paikallinen kaupunkipyöräjärjestelmäsi ei ole tuettu, tai näet virheen tiedoissa, voit ilmoittaa asiasta rajapinnan pybikes-taustajärjestelmään tai osallistua sen kehittämiseen."
 
 #: providers/hsl_info.qml:28
-msgid ""
-"You need to register to use city bikes. See HSL web pages for more "
-"information."
-msgstr ""
-"Kaupunkipyörien käyttö edellyttää rekisteröitymistä. Katso lisätietoja HSL:n"
-" sivuilta."
+msgid "You need to register to use city bikes. See HSL web pages for more information."
+msgstr "Kaupunkipyörien käyttö edellyttää rekisteröitymistä. Katso lisätietoja HSL:n sivuilta."
 
 #: qml/AboutPage.qml:36
 msgid "About Pan Bikes"
@@ -54,12 +43,8 @@ msgid "GitHub page"
 msgstr "GitHub-sivu"
 
 #: qml/AboutPage.qml:66
-msgid ""
-"Pan Bikes is free software released under the GNU General Public License "
-"(GPL), version 3 or later."
-msgstr ""
-"Pan Bikes on vapaa ohjelmisto, julkaistu lisenssillä GNU General Public "
-"License (GPL), versio 3 tai uudempi."
+msgid "Pan Bikes is free software released under the GNU General Public License (GPL), version 3 or later."
+msgstr "Pan Bikes on vapaa ohjelmisto, julkaistu lisenssillä GNU General Public License (GPL), versio 3 tai uudempi."
 
 #: qml/AboutPage.qml:71
 msgid "Translated by"
@@ -75,12 +60,8 @@ msgid "translator-credits"
 msgstr "Osmo Salomaa"
 
 #: qml/AboutPage.qml:93
-msgid ""
-"You can add new user interface translations or contribute to existing ones "
-"at Transifex."
-msgstr ""
-"Voit lisätä uusia käyttöliittymäkäännöksiä tai osallistua nykyisten "
-"käännösten parantamiseen Transifexissa."
+msgid "You can add new user interface translations or contribute to existing ones at Transifex."
+msgstr "Voit lisätä uusia käyttöliittymäkäännöksiä tai osallistua nykyisten käännösten parantamiseen Transifexissa."
 
 #: qml/AboutPage.qml:101
 msgid "Transifex page"

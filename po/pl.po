@@ -10,17 +10,17 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-04 03:10+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Carmen Fernández B. <carmenfdezb@yahoo.es>, 2017\n"
-"Language-Team: Spanish (https://www.transifex.com/otsaloma/teams/74551/es/)\n"
+"Last-Translator: A <hucul@o2.pl>, 2017\n"
+"Language-Team: Polish (https://www.transifex.com/otsaloma/teams/74551/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: es\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: pl\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>=14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
 #: pan/util.py:52
 msgid "Connection timed out"
-msgstr "El tiempo de conexión ha expirado"
+msgstr "Upłynął czas połączenia"
 
 #: providers/citybikes_info.qml:28
 msgid ""
@@ -28,42 +28,42 @@ msgid ""
 "not supported, or you see an error in the data, you can contribute to the "
 "pybikes backend of that API by filing an issue and/or contributing code."
 msgstr ""
-"Los datos proceden de la API de citybik.es. Si el sistema de bicicletas de "
-"tu localidad no está soportada o ves un error en los datos, puedes "
-"contrubuir en el backend del API enviando una incidencia y/o contribuyendo "
-"en el código."
+"Dane są dostarczane za pomocą API citybik.es. Jeśli twój lokalny system "
+"miejskich rowerów nie jest wspierany albo znajdziesz błąd w danych, możesz "
+"wspomóc w rozwijaniu backend'u pybike tego API poprzez zgłoszenie błędu lub "
+"dopisanie kodu."
 
 #: providers/hsl_info.qml:28
 msgid ""
 "You need to register to use city bikes. See HSL web pages for more "
 "information."
 msgstr ""
-"Para usar las bicicletas es necesario registrarse. Para más información "
-"consulta las páginas Web de HSL."
+"Musisz być zarejestrowany aby używać miejskich rowerów. Po więcej informacji"
+" odwiedź stronę internetową HSL."
 
 #: qml/AboutPage.qml:36
 msgid "About Pan Bikes"
-msgstr "Acerca de Pan Bikes"
+msgstr "O Pan Bikes"
 
 #: qml/AboutPage.qml:42
 msgid "version %1"
-msgstr "versión %1"
+msgstr "wersja %1"
 
 #: qml/AboutPage.qml:49
 msgid "GitHub page"
-msgstr "Página de GitHub"
+msgstr "Strona GitHub"
 
 #: qml/AboutPage.qml:66
 msgid ""
 "Pan Bikes is free software released under the GNU General Public License "
 "(GPL), version 3 or later."
 msgstr ""
-"Pan Bikes es un programa libre publicado bajo Licencia General Pública de "
-"GNU (GPL), versión 3 o posterior."
+"Pan Bikes jest wolnym oprogramowaniem wydanym na licencji GNU General Public"
+" License (GPL), w wersji 3 lub wyższej."
 
 #: qml/AboutPage.qml:71
 msgid "Translated by"
-msgstr "Traducido por"
+msgstr "Przetłumaczone przez"
 
 #. TRANSLATORS: This is a special message that shouldn't be translated
 #. literally. It is used in the about page to give credits to the translators.
@@ -72,52 +72,51 @@ msgstr "Traducido por"
 #. write them on separate lines seperated by newlines (\n).
 #: qml/AboutPage.qml:83
 msgid "translator-credits"
-msgstr "Carmen Fernández B."
+msgstr "O tłumaczach"
 
 #: qml/AboutPage.qml:93
 msgid ""
 "You can add new user interface translations or contribute to existing ones "
 "at Transifex."
 msgstr ""
-"Puedes añadir nuevas traducciones de la interfaz de usuario o participar en "
-"las existentes en Transifex."
+"Na Transifex można dodać nowy język lub pomóc w tłumaczeniu już dodanych."
 
 #: qml/AboutPage.qml:101
 msgid "Transifex page"
-msgstr "Página de Transifex"
+msgstr "Strona Transifex"
 
 #: qml/MenuPage.qml:43
 msgid "Network"
-msgstr "Red"
+msgstr "Sieć"
 
 #: qml/MenuPage.qml:57
 msgid "Preferences"
-msgstr "Preferencias"
+msgstr "Preferencje"
 
 #: qml/MenuPage.qml:63
 msgid "Maximum amount of stations visible"
-msgstr "Número máximo de estaciones visibles"
+msgstr "Maksymalna liczba widocznych stacji"
 
 #: qml/MenuPage.qml:94
 msgid "About"
-msgstr "Acerca de"
+msgstr "O"
 
 #: qml/NetworkPage.qml:67
 msgid "via %1"
-msgstr "A través de %1"
+msgstr "przez %1"
 
 #: qml/NetworkPage.qml:89
 msgid "Networks"
-msgstr "Redes"
+msgstr "Sieci"
 
 #: qml/NetworkPage.qml:94
 msgid "Search"
-msgstr "Buscar"
+msgstr "Wyszukaj"
 
 #: qml/NetworkPage.qml:121
 msgid "Loading"
-msgstr "Cargando"
+msgstr "Ładowanie"
 
 #: qml/NetworkPage.qml:164
 msgid "No networks found"
-msgstr "No se han encontrado redes"
+msgstr "Sieci nie zostały znalezione"
