@@ -42,7 +42,7 @@ msgstr ""
 
 #: qml/AboutPage.qml:36
 msgid "About Pan Bikes"
-msgstr "O programu Pan BIkes"
+msgstr "O programu Pan Bikes"
 
 #: qml/AboutPage.qml:42
 msgid "version %1"
@@ -78,6 +78,8 @@ msgid ""
 "You can add new user interface translations or contribute to existing ones "
 "at Transifex."
 msgstr ""
+"You can add new user interface translations or contribute to existing ones "
+"at Transifex."
 
 #: qml/AboutPage.qml:101
 msgid "Transifex page"
