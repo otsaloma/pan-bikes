@@ -86,7 +86,7 @@ pot:
 	 --language=JavaScript \
 	 --from-code=UTF-8 \
 	 --join-existing \
-	 --keyword=app.tr:1 \
+	 --keyword=tr:1 \
 	 --keyword=qsTranslate:2 \
 	 --add-comments=TRANSLATORS: \
 	 --no-wrap \
