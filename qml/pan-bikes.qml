@@ -31,7 +31,7 @@ ApplicationWindow {
         Map { id: map }
     }
 
-    property var conf: Config {}
+    property var  conf: Config {}
     property bool running: Qt.application.active || cover.active
 
     PositionSource { id: gps }

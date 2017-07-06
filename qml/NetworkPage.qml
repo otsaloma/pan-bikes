@@ -25,7 +25,7 @@ Page {
     allowedOrientations: app.defaultAllowedOrientations
 
     property bool loading: false
-    property var networks: []
+    property var  networks: []
 
     SilicaListView {
         id: view
