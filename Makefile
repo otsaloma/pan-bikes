@@ -80,15 +80,18 @@ pot:
 	 --add-comments=TRANSLATORS: \
 	 --no-wrap \
 	 */*.py
+
 	xgettext \
 	 --output=$(POT_FILE) \
 	 --language=JavaScript \
 	 --from-code=UTF-8 \
 	 --join-existing \
+	 --keyword=app.tr:1 \
 	 --keyword=qsTranslate:2 \
 	 --add-comments=TRANSLATORS: \
 	 --no-wrap \
 	 */*.qml
+
 	cat */*.json \
 	 | grep '^ *"_' \
 	 | sed 's/: *\("[^"]*"\)/: _(\1)/' \

@@ -64,7 +64,7 @@ Page {
                 color: Theme.secondaryColor
                 font.pixelSize: Theme.fontSizeExtraSmall
                 height: implicitHeight + 1.5 * Theme.paddingMedium
-                text: qsTranslate("", "via %1").arg(model.provider_name)
+                text: app.tr("via %1", model.provider_name)
                 verticalAlignment: Text.AlignTop
             }
 
@@ -86,12 +86,12 @@ Page {
 
             PageHeader {
                 id: header
-                title: qsTranslate("", "Networks")
+                title: app.tr("Networks")
             }
 
             SearchField {
                 id: searchField
-                placeholderText: qsTranslate("", "Search")
+                placeholderText: app.tr("Search")
                 visible: !page.loading
                 width: parent.width
                 onTextChanged: page.filterNetworks();
@@ -118,7 +118,7 @@ Page {
         if (page.status === PageStatus.Activating) {
             view.model.clear();
             page.loading = true;
-            busy.text = qsTranslate("", "Loading");
+            busy.text = app.tr("Loading");
         } else if (page.status === PageStatus.Active) {
             page.loadNetworks();
         }
@@ -161,7 +161,7 @@ Page {
                 page.loading = false;
                 page.filterNetworks();
             } else {
-                busy.error = qsTranslate("", "No networks found");
+                busy.error = app.tr("No networks found");
                 page.loading = false;
             }
         });

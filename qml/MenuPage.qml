@@ -40,7 +40,7 @@ Page {
 
             ValueButton {
                 id: networkButton
-                label: qsTranslate("", "Network")
+                label: app.tr("Network")
                 value: app.conf.get("network_label")
                 width: parent.width
                 onClicked: app.pageStack.push("NetworkPage.qml");
@@ -54,13 +54,13 @@ Page {
             }
 
             SectionHeader {
-                text: qsTranslate("", "Preferences")
+                text: app.tr("Preferences")
             }
 
             TextField {
                 id: stationsField
                 inputMethodHints: Qt.ImhDigitsOnly | Qt.ImhNoPredictiveText
-                label: qsTranslate("", "Maximum amount of stations visible")
+                label: app.tr("Maximum amount of stations visible")
                 text: app.conf.get("max_stations").toString()
                 validator: RegExpValidator { regExp: /^[0-9]+$/ }
                 width: parent.width
@@ -91,7 +91,7 @@ Page {
 
         PullDownMenu {
             MenuItem {
-                text: qsTranslate("", "About")
+                text: app.tr("About")
                 onClicked: app.pageStack.push("AboutPage.qml");
             }
         }

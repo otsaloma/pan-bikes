@@ -25,7 +25,7 @@ Column {
     ListItemLabel {
         font.pixelSize: Theme.fontSizeSmall
         height: implicitHeight + Theme.paddingLarge
-        text: qsTranslate("", "Data is provided via the citybik.es API. If your local city bike system is not supported, or you see an error in the data, you can contribute to the pybikes backend of that API by filing an issue and/or contributing code.")
+        text: app.tr("Data is provided via the citybik.es API. If your local city bike system is not supported, or you see an error in the data, you can contribute to the pybikes backend of that API by filing an issue and/or contributing code.")
         wrapMode: Text.WordWrap
     }
 

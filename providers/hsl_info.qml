@@ -25,7 +25,7 @@ Column {
     ListItemLabel {
         font.pixelSize: Theme.fontSizeSmall
         height: implicitHeight + Theme.paddingLarge
-        text: qsTranslate("", "You need to register to use city bikes. See HSL web pages for more information.")
+        text: app.tr("You need to register to use city bikes. See HSL web pages for more information.")
         wrapMode: Text.WordWrap
     }
 
