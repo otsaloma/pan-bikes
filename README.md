@@ -3,6 +3,8 @@ Pan Bikes
 
 [![Build Status](https://travis-ci.org/otsaloma/pan-bikes.svg)](
 https://travis-ci.org/otsaloma/pan-bikes)
+[![Donate](https://img.shields.io/badge/donate-paypal.me-blue.svg)](
+https://www.paypal.me/otsaloma)
 
 Pan Bikes is an application for Sailfish OS to view the locations and
 real-time occupancy of city bike stations. It primarily uses
