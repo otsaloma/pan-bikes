@@ -8,12 +8,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-04 03:10+0300\n"
+"POT-Creation-Date: 2017-11-15 01:11+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Boštjan Štrumbelj <sponka@gmail.com>, 2017\n"
 "Language-Team: Slovenian (Slovenia) (https://www.transifex.com/otsaloma/teams/74551/sl_SI/)\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: sl_SI\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
@@ -60,7 +60,11 @@ msgstr ""
 "Pan Bikes je brezplačen program, izdan pod licenco GNU General Public "
 "License (GPL), različica 3 ali kasnejše."
 
-#: qml/AboutPage.qml:71
+#: qml/AboutPage.qml:74
+msgid "Donate via PayPal"
+msgstr ""
+
+#: qml/AboutPage.qml:79
 msgid "Translated by"
 msgstr "Prevod"
 
@@ -69,11 +73,11 @@ msgstr "Prevod"
 #. Thus, you should translate it to your name. You can also include other
 #. translators who have contributed to this translation; in that case, please
 #. write them on separate lines seperated by newlines (\n).
-#: qml/AboutPage.qml:83
+#: qml/AboutPage.qml:91
 msgid "translator-credits"
 msgstr "sponka"
 
-#: qml/AboutPage.qml:93
+#: qml/AboutPage.qml:101
 msgid ""
 "You can add new user interface translations or contribute to existing ones "
 "at Transifex."
@@ -81,7 +85,7 @@ msgstr ""
 "You can add new user interface translations or contribute to existing ones "
 "at Transifex."
 
-#: qml/AboutPage.qml:101
+#: qml/AboutPage.qml:109
 msgid "Transifex page"
 msgstr "Transifex spletna stran"
 

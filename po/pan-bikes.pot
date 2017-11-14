@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-04 03:10+0300\n"
+"POT-Creation-Date: 2017-11-15 01:11+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,11 +22,16 @@ msgid "Connection timed out"
 msgstr ""
 
 #: providers/citybikes_info.qml:28
-msgid "Data is provided via the citybik.es API. If your local city bike system is not supported, or you see an error in the data, you can contribute to the pybikes backend of that API by filing an issue and/or contributing code."
+msgid ""
+"Data is provided via the citybik.es API. If your local city bike system is "
+"not supported, or you see an error in the data, you can contribute to the "
+"pybikes backend of that API by filing an issue and/or contributing code."
 msgstr ""
 
 #: providers/hsl_info.qml:28
-msgid "You need to register to use city bikes. See HSL web pages for more information."
+msgid ""
+"You need to register to use city bikes. See HSL web pages for more "
+"information."
 msgstr ""
 
 #: qml/AboutPage.qml:36
@@ -42,10 +47,16 @@ msgid "GitHub page"
 msgstr ""
 
 #: qml/AboutPage.qml:66
-msgid "Pan Bikes is free software released under the GNU General Public License (GPL), version 3 or later."
+msgid ""
+"Pan Bikes is free software released under the GNU General Public License "
+"(GPL), version 3 or later."
 msgstr ""
 
-#: qml/AboutPage.qml:71
+#: qml/AboutPage.qml:74
+msgid "Donate via PayPal"
+msgstr ""
+
+#: qml/AboutPage.qml:79
 msgid "Translated by"
 msgstr ""
 
@@ -54,15 +65,17 @@ msgstr ""
 #. Thus, you should translate it to your name. You can also include other
 #. translators who have contributed to this translation; in that case, please
 #. write them on separate lines seperated by newlines (\n).
-#: qml/AboutPage.qml:83
+#: qml/AboutPage.qml:91
 msgid "translator-credits"
 msgstr ""
 
-#: qml/AboutPage.qml:93
-msgid "You can add new user interface translations or contribute to existing ones at Transifex."
+#: qml/AboutPage.qml:101
+msgid ""
+"You can add new user interface translations or contribute to existing ones "
+"at Transifex."
 msgstr ""
 
-#: qml/AboutPage.qml:101
+#: qml/AboutPage.qml:109
 msgid "Transifex page"
 msgstr ""
 

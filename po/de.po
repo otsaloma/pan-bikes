@@ -8,19 +8,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-04 03:10+0300\n"
+"POT-Creation-Date: 2017-11-15 01:11+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Osmo Salomaa <otsaloma@iki.fi>, 2017\n"
 "Language-Team: German (https://www.transifex.com/otsaloma/teams/74551/de/)\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: pan/util.py:52
 msgid "Connection timed out"
-msgstr "Verbindungs-Timeout"
+msgstr "Zeitüberschreitung der Verbindung"
 
 #: providers/citybikes_info.qml:28
 msgid ""
@@ -28,17 +28,17 @@ msgid ""
 "not supported, or you see an error in the data, you can contribute to the "
 "pybikes backend of that API by filing an issue and/or contributing code."
 msgstr ""
-"Die Daten sind bereitgestellt via der citybik.es API. Wenn ihre lokale Stadt"
-" nicht unterstützt wird oder Sie stellen eine Fehler fest. Können Sie den "
-"Fehler melden oder den Code bereitstellen mit Hilfe des pybikes backend API"
+"Die Daten werden von der citybik.es API bereitgestell. Wenn ihre lokale "
+"Stadt nicht unterstützt wird oder Sie einen Fehler feststellen, können Sie "
+"den Fehler melden oder Code zum pybikes-Backend dieser API beitragen."
 
 #: providers/hsl_info.qml:28
 msgid ""
 "You need to register to use city bikes. See HSL web pages for more "
 "information."
 msgstr ""
-"Sie müssen sich anmelden um city bike benutzen zu können. Sehen Sie HSL "
-"Webseite für mehr Informationen."
+"Sie müssen sich anmelden, um city bikes benutzen zu können. Sehen Sie sich "
+"die HSL-Webseiten für mehr Informationen an."
 
 #: qml/AboutPage.qml:36
 msgid "About Pan Bikes"
@@ -50,17 +50,21 @@ msgstr "Version %1"
 
 #: qml/AboutPage.qml:49
 msgid "GitHub page"
-msgstr "GitHub Seite"
+msgstr "GitHub-Seite"
 
 #: qml/AboutPage.qml:66
 msgid ""
 "Pan Bikes is free software released under the GNU General Public License "
 "(GPL), version 3 or later."
 msgstr ""
-"Pan Bikes ist eine freie Software veröffentlicht unter der GNU Public "
-"License (GPL) ab Version 3"
+"Pan Bikes ist Freie Software, veröffentlicht unter der GNU Public License "
+"(GPL) Version 3 oder höher."
 
-#: qml/AboutPage.qml:71
+#: qml/AboutPage.qml:74
+msgid "Donate via PayPal"
+msgstr ""
+
+#: qml/AboutPage.qml:79
 msgid "Translated by"
 msgstr "Übersetzt von"
 
@@ -69,21 +73,21 @@ msgstr "Übersetzt von"
 #. Thus, you should translate it to your name. You can also include other
 #. translators who have contributed to this translation; in that case, please
 #. write them on separate lines seperated by newlines (\n).
-#: qml/AboutPage.qml:83
+#: qml/AboutPage.qml:91
 msgid "translator-credits"
-msgstr ""
+msgstr "Danksagungen an die Übersetzer"
 
-#: qml/AboutPage.qml:93
+#: qml/AboutPage.qml:101
 msgid ""
 "You can add new user interface translations or contribute to existing ones "
 "at Transifex."
 msgstr ""
-"Sie können eine neue Benutzersprache oder bei einer bestehenden "
-"Benutzersprache beitragen bei Transifex"
+"Sie können bei Transifex eine neue Benutzersprache hinzufügen oder zu einer "
+"bestehenden Benutzersprache beitragen."
 
-#: qml/AboutPage.qml:101
+#: qml/AboutPage.qml:109
 msgid "Transifex page"
-msgstr "Transifexseite"
+msgstr "Transifex-Seite"
 
 #: qml/MenuPage.qml:43
 msgid "Network"
@@ -95,7 +99,7 @@ msgstr "Einstellungen"
 
 #: qml/MenuPage.qml:63
 msgid "Maximum amount of stations visible"
-msgstr "Maximale Anzahl von sichtbaren Stationen"
+msgstr "Maximale Anzahl sichtbarer Stationen"
 
 #: qml/MenuPage.qml:94
 msgid "About"
@@ -103,7 +107,7 @@ msgstr "Über"
 
 #: qml/NetworkPage.qml:67
 msgid "via %1"
-msgstr "zu %1"
+msgstr "über %1"
 
 #: qml/NetworkPage.qml:89
 msgid "Networks"
