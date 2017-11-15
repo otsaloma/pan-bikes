@@ -63,7 +63,7 @@ msgstr ""
 
 #: qml/AboutPage.qml:74
 msgid "Donate via PayPal"
-msgstr ""
+msgstr "Donatie via PayPal"
 
 #: qml/AboutPage.qml:79
 msgid "Translated by"
