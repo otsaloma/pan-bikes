@@ -17,7 +17,7 @@
 
 """Locations and real-time occupancy of city bike stations."""
 
-__version__ = "0.2.1"
+__version__ = "1.0"
 
 try:
     import pyotherside

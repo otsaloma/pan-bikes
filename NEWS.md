@@ -1,3 +1,10 @@
+2017-11-15: Pan Bikes 1.0
+=========================
+
+* Add donate button to about page
+* Fix string escapes in Python calls from QML
+* Update translations
+
 2017-06-23: Pan Bikes 0.2.1
 ===========================
 
