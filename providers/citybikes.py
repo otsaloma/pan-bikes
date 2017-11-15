@@ -40,7 +40,7 @@ def list_networks():
 
 def list_stations(network):
     """Return a list of bike stations and their occupancy."""
-    url = "http://api.citybik.es/v2/networks/{}?fields=stations".format(network)
+    url = "https://api.citybik.es/v2/networks/{}?fields=stations".format(network)
     stations = pan.http.get_json(url)
     stations = pan.AttrDict(stations)
     return [dict(
