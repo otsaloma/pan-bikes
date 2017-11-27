@@ -15,6 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import datetime
 import pan.test
 
 
@@ -22,8 +23,10 @@ class TestModule(pan.test.TestCase):
 
     def setup_method(self, method):
         self.provider = pan.Provider("hsl")
+        self.month = datetime.datetime.today().month
 
     def test_list_networks(self):
+        if not 5 <= self.month <= 10: return
         networks = self.provider.list_networks()
         networks = list(map(pan.AttrDict, networks))
         assert networks
@@ -35,6 +38,7 @@ class TestModule(pan.test.TestCase):
             assert network.y
 
     def test_list_stations(self):
+        if not 5 <= self.month <= 10: return
         stations = self.provider.list_stations("hsl")
         stations = list(map(pan.AttrDict, stations))
         assert stations
