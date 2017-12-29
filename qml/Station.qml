@@ -41,7 +41,7 @@ MapQuickItem {
             anchors.horizontalCenter: bubble.horizontalCenter
             anchors.top: bubble.bottom
             // Try to avoid a stripe between bubble and arrow.
-            anchors.topMargin: Theme.pixelRatio * -0.5
+            anchors.topMargin: -0.5
             smooth: false
             source: app.getIcon("bubble-arrow")
         }
