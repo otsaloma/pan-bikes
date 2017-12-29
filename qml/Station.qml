@@ -33,7 +33,7 @@ MapQuickItem {
             anchors.margins: -Theme.paddingSmall
             anchors.right: counts.right
             anchors.top: counts.top
-            color: "#d0000000"
+            color: "#d9000000"
         }
 
         Image {
