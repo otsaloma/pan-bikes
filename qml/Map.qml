@@ -85,7 +85,7 @@ Map {
         gps.onInitialCenterChanged.connect(map.centerOnPosition);
         // XXX: Must set zoomLevel in onCompleted.
         // https://bugreports.qt.io/browse/QTBUG-40779
-        map.setZoomLevel(Screen.sizeCategory >= Screen.Large ? 16 : 15);
+        map.setZoomLevel(Theme.pixelRatio >= 1.5 ? 15 : 14);
         map.ready = true;
     }
 
