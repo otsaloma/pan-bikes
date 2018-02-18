@@ -1,7 +1,7 @@
 # -*- coding: us-ascii-unix -*-
 
 NAME       = harbour-pan-bikes
-VERSION    = 1.0
+VERSION    = 1.1
 LANGS      = $(basename $(notdir $(wildcard po/*.po)))
 
 DESTDIR    =

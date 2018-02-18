@@ -1,3 +1,10 @@
+2018-02-18: Pan Bikes 1.1
+=========================
+
+* Use darker black for map overlays and buttons
+* Adjust starting zoom level based on screen DPI
+* Update translations
+
 2017-11-15: Pan Bikes 1.0
 =========================
 
