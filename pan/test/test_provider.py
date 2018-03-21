@@ -23,7 +23,8 @@ class TestProvider(pan.test.TestCase):
     def setup_method(self, method):
         self.provider = pan.Provider("citybikes")
         self.network = "citybikes-helsinki"
-        self.bbox = [24.84592, 24.89656, 60.14359, 60.17110]
+        # Lauttasaari, Helsinki
+        self.bbox = [24.84519, 24.89440, 60.14357, 60.17153]
 
     def test___new__(self):
         a = pan.Provider("citybikes")
