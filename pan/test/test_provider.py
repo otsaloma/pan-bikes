@@ -40,8 +40,7 @@ class TestProvider(pan.test.TestCase):
     def test_get_total_stations(self):
         self.provider.list_stations(self.network)
         total = self.provider.get_total_stations
-        assert 100 < total(self.network) < 200
-        assert 6 < total(self.network, self.bbox) < 12
+        assert 0 < total(self.network, self.bbox) < total(self.network)
 
     def test_list_networks(self):
         networks = self.provider.list_networks(x=24.941, y=60.169)
@@ -50,5 +49,5 @@ class TestProvider(pan.test.TestCase):
     def test_list_stations(self):
         stations = self.provider.list_stations(self.network)
         assert len(stations) == pan.conf.max_stations
-        stations = self.provider.list_stations(self.network, self.bbox)
-        assert 6 < len(stations) < 12
+        stations_bbox = self.provider.list_stations(self.network, self.bbox)
+        assert 0 < len(stations_bbox) < len(stations)
