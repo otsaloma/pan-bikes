@@ -24,8 +24,8 @@ class TestConnectionPool(pan.test.TestCase):
 
     def setup_method(self, method):
         self.pool = pan.http.ConnectionPool(2)
-        self.http_url = "http://github.com/otsaloma/pan-bikes"
-        self.https_url = "https://github.com/otsaloma/pan-bikes"
+        self.http_url = "http://otsaloma.io/"
+        self.https_url = "https://otsaloma.io/"
 
     def teardown_method(self, method):
         self.pool.terminate()
@@ -82,22 +82,22 @@ class TestConnectionPool(pan.test.TestCase):
 class TestModule(pan.test.TestCase):
 
     def test_get(self):
-        url = "https://github.com/otsaloma/pan-bikes"
+        url = "https://otsaloma.io/"
         blob = pan.http.get(url, encoding="utf_8")
         assert blob.strip().startswith("<!DOCTYPE html>")
 
     def test_get__error(self):
-        url = "http://xxx.yyy.zzz/"
+        url = "https://xxx.yyy.zzz/"
         self.assert_raises(Exception, pan.http.get, url)
 
     def test_get__non_200(self):
-        url = "http://www.google.com/xxx/yyy/zzz"
+        url = "https://otsaloma.io/xxx/yyy/zzz"
         self.assert_raises(Exception, pan.http.get, url)
 
     def test_get_json(self):
-        url = "https://api.github.com/repos/otsaloma/pan-bikes/releases"
-        assert isinstance(pan.http.get_json(url), list)
+        url = "https://otsaloma.io/pub/test.json"
+        assert isinstance(pan.http.get_json(url), dict)
 
     def test_get_json__error(self):
-        url = "https://github.com/otsaloma/pan-bikes"
+        url = "https://otsaloma.io/pub/test.xml"
         self.assert_raises(Exception, pan.http.get_json, url)
