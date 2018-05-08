@@ -2,16 +2,24 @@
 
 NAME       = harbour-pan-bikes
 VERSION    = 1.1
-LANGS      = $(basename $(notdir $(wildcard po/*.po)))
-
+RELEASE    = $(NAME)-$(VERSION)
 DESTDIR    =
 PREFIX     = /usr
 DATADIR    = $(DESTDIR)$(PREFIX)/share/$(NAME)
 DESKTOPDIR = $(DESTDIR)$(PREFIX)/share/applications
 ICONDIR    = $(DESTDIR)$(PREFIX)/share/icons/hicolor
+LANGS      = $(basename $(notdir $(wildcard po/*.po)))
+LCONVERT   = $(or $(wildcard /usr/lib/qt5/bin/lconvert),\
+                  $(wildcard /usr/lib/*/qt5/bin/lconvert))
 
-LCONVERT = $(or $(wildcard /usr/lib/qt5/bin/lconvert),\
-    $(wildcard /usr/lib/*/qt5/bin/lconvert))
+define install-translation =
+    # GNU gettext translations for Python use.
+    mkdir -p $(DATADIR)/locale/$(1)/LC_MESSAGES
+    msgfmt po/$(1).po -o $(DATADIR)/locale/$(1)/LC_MESSAGES/pan-bikes.mo
+    # Qt linguist translations for QML use.
+    mkdir -p $(DATADIR)/translations
+    $(LCONVERT) -o $(DATADIR)/translations/$(NAME)-$(1).qm po/$(1).po
+endef
 
 check:
 	pyflakes pan providers
@@ -27,18 +35,9 @@ clean:
 
 dist:
 	$(MAKE) clean
-	mkdir -p dist/$(NAME)-$(VERSION)
-	cp -r `cat MANIFEST` dist/$(NAME)-$(VERSION)
-	tar -C dist -cJf dist/$(NAME)-$(VERSION).tar.xz $(NAME)-$(VERSION)
-
-define install-translations =
-    # GNU gettext translations for Python use.
-    mkdir -p $(DATADIR)/locale/$(1)/LC_MESSAGES
-    msgfmt po/$(1).po -o $(DATADIR)/locale/$(1)/LC_MESSAGES/pan-bikes.mo
-    # Qt linguist translations for QML use.
-    mkdir -p $(DATADIR)/translations
-    $(LCONVERT) -o $(DATADIR)/translations/$(NAME)-$(1).qm po/$(1).po
-endef
+	mkdir -p dist/$(RELEASE)
+	cp -r `cat MANIFEST` dist/$(RELEASE)
+	tar -C dist -cJf dist/$(RELEASE).tar.xz $(RELEASE)
 
 install:
 	@echo "Installing Python files..."
@@ -56,7 +55,7 @@ install:
 	cp providers/*.qml $(DATADIR)/providers
 	cp providers/README.md $(DATADIR)/providers
 	@echo "Installing translations..."
-	$(foreach lang,$(LANGS),$(call install-translations,$(lang)))
+	$(foreach lang,$(LANGS),$(call install-translation,$(lang)))
 	@echo "Installing desktop file..."
 	mkdir -p $(DESKTOPDIR)
 	cp data/$(NAME).desktop $(DESKTOPDIR)
@@ -76,11 +75,11 @@ pot:
 rpm:
 	$(MAKE) dist
 	mkdir -p $$HOME/rpmbuild/SOURCES
-	cp dist/$(NAME)-$(VERSION).tar.xz $$HOME/rpmbuild/SOURCES
-	rm -rf $$HOME/rpmbuild/BUILD/$(NAME)-$(VERSION)
+	cp dist/$(RELEASE).tar.xz $$HOME/rpmbuild/SOURCES
+	rm -rf $$HOME/rpmbuild/BUILD/$(RELEASE)
 	rpmbuild -ba --nodeps rpm/$(NAME).spec
-	cp $$HOME/rpmbuild/RPMS/noarch/$(NAME)-$(VERSION)-*.rpm rpm
-	cp $$HOME/rpmbuild/SRPMS/$(NAME)-$(VERSION)-*.rpm rpm
+	cp $$HOME/rpmbuild/RPMS/noarch/$(RELEASE)-*.rpm rpm
+	cp $$HOME/rpmbuild/SRPMS/$(RELEASE)-*.rpm rpm
 
 test:
 	py.test pan providers
