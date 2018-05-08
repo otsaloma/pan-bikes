@@ -1,10 +1,8 @@
 Pan Bikes
 =========
 
-[![Build Status](https://travis-ci.org/otsaloma/pan-bikes.svg)](
-https://travis-ci.org/otsaloma/pan-bikes)
-[![Donate](https://img.shields.io/badge/donate-paypal.me-blue.svg)](
-https://www.paypal.me/otsaloma)
+[![Build Status](https://travis-ci.org/otsaloma/pan-bikes.svg)](https://travis-ci.org/otsaloma/pan-bikes)
+[![Donate](https://img.shields.io/badge/donate-paypal.me-blue.svg)](https://www.paypal.me/otsaloma)
 
 Pan Bikes is an application for Sailfish OS to view the locations and
 real-time occupancy of city bike stations. It primarily uses
@@ -18,4 +16,4 @@ License (GPL), see the file [`COPYING`](COPYING) for details.
 For testing purposes you can just run `qmlscene qml/pan-bikes.qml`. For
 installation, you can build the RPM package with command `make rpm`. You
 don't need an SDK to build the RPM, only basic tools: `make`,
-`rpmbuild`, `gettext` and `linguist` from `qttools`
+`rpmbuild`, `gettext` and `qttools`
