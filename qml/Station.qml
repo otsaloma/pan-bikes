@@ -87,14 +87,14 @@ MapQuickItem {
         // Update bike and capacity counts, accounting for missing data.
         // Missing freeBikes should be a rare error, but many networks don't provide
         // emptySlots at all, in which case it's better to show only the bike count.
-        if (freeBikes != null) {
+        if (freeBikes !== null) {
             station.bikes = freeBikes;
             station.label = freeBikes.toString();
         } else {
             station.bikes = -1;
             station.label = "–";
         }
-        if (freeBikes != null && emptySlots != null) {
+        if (freeBikes !== null && emptySlots !== null) {
             station.capacity = freeBikes + emptySlots;
             station.label += "\u200a/\u200a%1".arg(station.capacity);
         } else {
