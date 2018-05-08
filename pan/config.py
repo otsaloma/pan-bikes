@@ -91,6 +91,7 @@ class ConfigurationStore(pan.AttrDict):
     def set(self, option, value):
         """Set the value of `option`."""
         root, name = self._split_option(option, create=True)
+        value = self._coerce(value, self.get_default(option))
         root[name] = copy.deepcopy(value)
 
     def _split_option(self, option, create=False):
