@@ -80,6 +80,10 @@ class TestConfigurationStore(pan.test.TestCase):
         pan.conf.set("provider", "foo")
         assert pan.conf.provider == "foo"
 
+    def test_set__coerce(self):
+        pan.conf.set("max_stations", 100.1)
+        assert pan.conf.max_stations == 100
+
     def test_set__nested(self):
         pan.conf.set("foo.bar", 1)
         assert pan.conf.foo.bar == 1
