@@ -85,7 +85,7 @@ class ConfigurationStore(pan.AttrDict):
     def remove(self, option, item):
         """Remove `item` from the value of `option`."""
         root, name = self._split_option(option)
-        if not item in root[name]: return
+        if item not in root[name]: return
         root[name].remove(item)
 
     def set(self, option, value):
@@ -97,7 +97,7 @@ class ConfigurationStore(pan.AttrDict):
         """Split dotted option to dictionary and option name."""
         root = self
         for section in option.split(".")[:-1]:
-            if create and not section in root:
+            if create and section not in root:
                 # Create missing hierarchies.
                 root[section] = pan.AttrDict()
             root = root[section]
@@ -133,7 +133,7 @@ class ConfigurationStore(pan.AttrDict):
         # Make sure no obsolete top-level options remain.
         names = list(DEFAULTS.keys())
         for name in list(out.keys()):
-            if not name in names:
+            if name not in names:
                 del out[name]
         out["version"] = pan.__version__
         with pan.util.silent(Exception, tb=True):
