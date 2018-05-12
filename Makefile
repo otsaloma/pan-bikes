@@ -26,6 +26,7 @@ check:
 
 clean:
 	rm -rf dist
+	rm -rf .cache
 	rm -rf */.cache
 	rm -rf */*/.cache
 	rm -rf */__pycache__
