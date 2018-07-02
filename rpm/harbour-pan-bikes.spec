@@ -17,6 +17,7 @@ BuildRequires: make
 BuildRequires: qt5-qttools-linguist
 Requires: libsailfishapp-launcher
 Requires: pyotherside-qml-plugin-python3-qt5 >= 1.5.1
+Requires: qt5-qtdeclarative-import-location
 Requires: qt5-qtdeclarative-import-positioning >= 5.2
 Requires: sailfishsilica-qt5
 
