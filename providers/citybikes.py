@@ -21,19 +21,13 @@ Global city bikes via a proxy API.
 https://api.citybik.es/v2/
 """
 
-import os
 import pan
 import re
 
-directory = os.path.abspath(os.path.dirname(__file__))
-
 def list_networks():
     """Return a list of supported city bike networks."""
-    # XXX: Work around incomplete reads at the networks endpoint.
-    fname = os.path.join(directory, "citybikes", "networks.json")
-    networks = pan.util.read_json(fname)
-    # url = "https://api.citybik.es/v2/networks?fields=id,location,name"
-    # networks = pan.http.get_json(url)
+    url = "https://api.citybik.es/v2/networks?fields=id,location,name"
+    networks = pan.http.get_json(url)
     networks = pan.AttrDict(networks)
     return [dict(
         city=network.location.city,

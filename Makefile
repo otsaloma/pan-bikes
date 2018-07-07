@@ -55,8 +55,6 @@ install:
 	cp providers/[!_]*.py $(DATADIR)/providers
 	cp providers/*.qml $(DATADIR)/providers
 	cp providers/README.md $(DATADIR)/providers
-	mkdir -p $(DATADIR)/providers/citybikes
-	cp providers/citybikes/*.json $(DATADIR)/providers/citybikes
 	@echo "Installing translations..."
 	$(foreach lang,$(LANGS),$(call install-translation,$(lang)))
 	@echo "Installing desktop file..."
