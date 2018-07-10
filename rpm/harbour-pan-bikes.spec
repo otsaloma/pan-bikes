@@ -5,7 +5,7 @@
 %define __provides_exclude_from ^%{_datadir}/.*$
 
 Name: harbour-pan-bikes
-Version: 1.2
+Version: 1.2.1
 Release: 1
 Summary: Locations and real-time occupancy of city bike stations
 License: GPLv3+

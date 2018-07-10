@@ -1,3 +1,8 @@
+2018-07-11: Pan Bikes 1.2.1
+===========================
+
+* Add missing QtLocation and HERE plugin dependencies to RPM spec file (#1)
+
 2018-06-12: Pan Bikes 1.2
 =========================
 
