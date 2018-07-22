@@ -1,0 +1,127 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-07-07 19:57+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Вячеслав Диконов <sdiconov@mail.ru>, 2018\n"
+"Language-Team: Russian (https://www.transifex.com/otsaloma/teams/74551/ru/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ru\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: pan/util.py:52
+msgid "Connection timed out"
+msgstr "Нет доступа в сеть"
+
+#: providers/citybikes_info.qml:28
+msgid ""
+"Data is provided via the citybik.es API. If your local city bike system is "
+"not supported, or you see an error in the data, you can contribute to the "
+"pybikes backend of that API by filing an issue and/or contributing code."
+msgstr ""
+"Данные предоставляются через API citybik.es. Если система проката "
+"велосипедов в вашем городе не поддерживается, или получаемая информация "
+"неверна, вы можете внести свой вклад в развитие бэкенда pybikes этого API "
+"сообщая об ошибках и/или предлагая свой код."
+
+#: providers/hsl_info.qml:28
+msgid ""
+"You need to register to use city bikes. See HSL web pages for more "
+"information."
+msgstr ""
+"Для использования проката необходима регистрация. Чтобы узнать об этом "
+"подробнее, перейдите на страницу HSL."
+
+#: qml/AboutPage.qml:36
+msgid "About Pan Bikes"
+msgstr "О программе Pan Bikes"
+
+#: qml/AboutPage.qml:42
+msgid "version %1"
+msgstr "версия %1"
+
+#: qml/AboutPage.qml:49
+msgid "GitHub page"
+msgstr "Страница GitHub"
+
+#: qml/AboutPage.qml:66
+msgid ""
+"Pan Bikes is free software released under the GNU General Public License "
+"(GPL), version 3 or later."
+msgstr ""
+"Pan Bikes - свободная программа, доступная на условиях GNU General Public "
+"License (GPL) версии 3 или последующей."
+
+#: qml/AboutPage.qml:74
+msgid "Donate via PayPal"
+msgstr "Пожертвование в PayPal"
+
+#: qml/AboutPage.qml:79
+msgid "Translated by"
+msgstr "Перевод"
+
+#. TRANSLATORS: This is a special message that shouldn't be translated
+#. literally. It is used in the about page to give credits to the translators.
+#. Thus, you should translate it to your name. You can also include other
+#. translators who have contributed to this translation; in that case, please
+#. write them on separate lines seperated by newlines (\n).
+#: qml/AboutPage.qml:91
+msgid "translator-credits"
+msgstr "Вячеслав Диконов"
+
+#: qml/AboutPage.qml:101
+msgid ""
+"You can add new user interface translations or contribute to existing ones "
+"at Transifex."
+msgstr ""
+"Добавить новый язык интерфейса или исправить перевод можно с помощью "
+"Transifex."
+
+#: qml/AboutPage.qml:109
+msgid "Transifex page"
+msgstr "Страница Transifex"
+
+#: qml/MenuPage.qml:43
+msgid "Network"
+msgstr "Сеть проката"
+
+#: qml/MenuPage.qml:57
+msgid "Preferences"
+msgstr "Параметры"
+
+#: qml/MenuPage.qml:63
+msgid "Maximum amount of stations visible"
+msgstr "Число отображаемых пунктов проката"
+
+#: qml/MenuPage.qml:94
+msgid "About"
+msgstr "О программе"
+
+#: qml/NetworkPage.qml:67
+msgid "via %1"
+msgstr "через %1"
+
+#: qml/NetworkPage.qml:89
+msgid "Networks"
+msgstr "Сети проката"
+
+#: qml/NetworkPage.qml:94
+msgid "Search"
+msgstr "Поиск"
+
+#: qml/NetworkPage.qml:121
+msgid "Loading"
+msgstr "Загрузка"
+
+#: qml/NetworkPage.qml:164
+msgid "No networks found"
+msgstr "Сети проката не найдены"
